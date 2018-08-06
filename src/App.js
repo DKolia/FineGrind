@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import Maps from "./Maps";
 import Footer from "./Footer";
 import NewJob from './NewJob'
-
+import ViewAccount from './ViewAccount'
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      userID: '',
-      allJobs: [],
-      loggedIn: false,
-
+      username: '',
+      userID: '45',
+      allJobs: [{_id: '45'}],
+      loggedIn: true,
+      createJobView: false,
+      loginView: false,
+      createAccountView: false,
+      viewAccountView: true
     }
   }
   //used to get color of all subsequent methods correct
@@ -20,28 +24,36 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //this is where you want to fetch data when you want to it exist at teh beginning of your app
+    //this is where you want to fetch data when you want to it exist at thes beginning of your app
     this.getJobs().then((jobs) => {
       this.setState({
         allJobs: jobs.data
       })
     }).catch((err) => {
-      console.log(err)
+      console.log(err, 'error with componenent did mount')
+    })
+  }
+
+  updateUserInfo = (userInfo) => {
+    this.setState({
+      username: userInfo
     })
   }
 
   getJobs = async () => {
     try {
+      //make fetch request to server to get all jobs data
       const jobs = await fetch('http://localhost:5000/api/v1/jobs', {
         credentials: 'include'
       })
-
+      //convert response from json
       const jobsJSON = jobs.json();
 
+      //return the converted data
       return jobsJSON
 
     } catch (err) {
-      console.log('Error with getJobs in App.js', err)
+      console.log('Error with getJobs in App.js', err) 
       return err
     }
   }
@@ -66,7 +78,9 @@ loadingElement={<div style={{ height: `100%` }} />}
           />
         </div>
 
-        <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/>
+
+        {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
+        {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
         <Footer />
       </div>
     );

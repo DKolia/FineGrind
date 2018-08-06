@@ -13,7 +13,7 @@ import React from "react"
 
 ///////////////////////
 
-
+// eslint-disable-next-line
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const Maps = withScriptjs(withGoogleMap((props) =>
