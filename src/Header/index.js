@@ -4,10 +4,11 @@ function Header() {
   return (
 
       <header>
+        <img src="Images/bullhorn-solid.svg"></img>
         <h2>FineGrind</h2>
-        <h3>Create</h3>
-        <h3>Login</h3>
-        <h3>Contact</h3>
+        <h3><a href="#">Create</a></h3>
+        <h3><a href="#">Login</a></h3>
+        <h3><a href="#">Contact</a></h3>
       </header>
 
   )

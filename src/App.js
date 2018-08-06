@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Maps from "./Maps";
 import Footer from "./Footer";
 import Header from "./Header";
+import Login from "./Login";
+import CreateAccount from "./CreateAccount";
 
 class App extends Component {
   constructor(){
@@ -13,6 +15,8 @@ class App extends Component {
       <div className="app">
 
         <Header />
+        <Login />
+        <CreateAccount />
 
         <div className="mapContainer">
           <Maps
@@ -23,7 +27,7 @@ loadingElement={<div style={{ height: `100%` }} />}
           />
         </div>
 
-        <footer />
+        <Footer />
       </div>
     );
   }

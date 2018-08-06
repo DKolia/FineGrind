@@ -4,7 +4,6 @@ body {
   font-family: sans-serif;
   display: flex;
   align-items: flex-start;
-  flex-flow: column;
 }
 
 .app {
