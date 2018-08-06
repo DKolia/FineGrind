@@ -9,12 +9,41 @@ class App extends Component {
     super();
     this.state = {
       userID: '',
-      allJobs: []
+      allJobs: [],
+      loggedIn: false,
+
     }
   }
   //used to get color of all subsequent methods correct
   placeholderFunction = () => {
 
+  }
+
+  componentDidMount() {
+    //this is where you want to fetch data when you want to it exist at teh beginning of your app
+    this.getJobs().then((jobs) => {
+      this.setState({
+        allJobs: jobs.data
+      })
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+  getJobs = async () => {
+    try {
+      const jobs = await fetch('http://localhost:5000/api/v1/jobs', {
+        credentials: 'include'
+      })
+
+      const jobsJSON = jobs.json();
+
+      return jobsJSON
+
+    } catch (err) {
+      console.log('Error with getJobs in App.js', err)
+      return err
+    }
   }
 
   //used to add new job to local dataset if user creates a new job posting
