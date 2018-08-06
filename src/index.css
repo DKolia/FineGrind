@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;}
+
+.mapContainer {
+  width: 50vw;
+  height: 70%;
+}
+
+h1 {
+
+}
+
+footer {
+  width: 100vw;
+  height: 10vh;
+  background-color: gray;
+  color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
