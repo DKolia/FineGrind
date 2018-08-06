@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import Maps from "./Maps";
-import footer from "./Footer";
+import Footer from "./Footer";
+import NewJob from './NewJob'
+
 
 class App extends Component {
   constructor(){
     super();
+    this.state = {
+      userID: '',
+      allJobs: []
+    }
+  }
+
+  placeholderFunction = () => {
+
+  }
+
+  updateJobs = (job) => {
+
   }
 
   render() {
@@ -19,7 +33,8 @@ loadingElement={<div style={{ height: `100%` }} />}
           />
         </div>
 
-        <footer />
+        <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/>
+        <Footer />
       </div>
     );
   }
