@@ -12,13 +12,17 @@ class App extends Component {
       allJobs: []
     }
   }
-
+  //used to get color of all subsequent methods correct
   placeholderFunction = () => {
 
   }
 
+  //used to add new job to local dataset if user creates a new job posting
   updateJobs = (job) => {
-
+    const jobsArray = this.state.allJobs;
+    this.setState({
+      allJobs: jobsArray.push(job)
+    })
   }
 
   render() {

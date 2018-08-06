@@ -15,16 +15,22 @@ class NewJob extends Component {
 		}
 	}
 
+	//used to get color of all subsequent methods correct
 	placeholderFunction = () => {
 
 	}
 
+	//called when the user presses the submit form button
 	handleSubmit = async (e) => {
+		//prevent page from refreshing upon hitting the submit button
 		e.preventDefault();
+		//add the user's id to the body
 		this.setState({
 			ownerID: this.props.userID
 		})
+
 		try{
+			//send the form data to the server to create new job posting
 			const newJob = await fetch('http://localhost:5000/api/v1/jobs', {
 				method: 'POST',
 				credentials: 'include',
@@ -34,9 +40,11 @@ class NewJob extends Component {
 				}
 			})
 
+			//convert the response from json
 			const newJobJSON = newJob.json();
-			console.log(newJobJSON, 'this is the newJobsAPI');
+			console.log(newJobJSON, 'this is the newJobsJSON');
 
+			//if the server accepted the new job, add the job to the app.js state
 			if(newJobJSON.status === 4000) {
 				this.props.updateJobs(newJobJSON.data)
 			}
@@ -47,6 +55,7 @@ class NewJob extends Component {
 
 	}
 
+	//used to handle change made to the form and log the changes in the state
 	handleChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -54,6 +63,13 @@ class NewJob extends Component {
 	}
 
 	render() {
+		/*
+		
+		This will render a form which will allow the user to input information about the job and upon submission, the information will be sent to the server to request it be added to the database.
+
+		*/
+
+
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<small>Job Title</small><br/>
