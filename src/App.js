@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Maps from "./Maps";
-import footer from "./Footer";
+import Footer from "./Footer";
+import Header from "./Header";
 
 class App extends Component {
   constructor(){
@@ -10,6 +11,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
+
+        <Header />
+
         <div className="mapContainer">
           <Maps
             containerElement={<div style={{ height: `900px` }} />}
