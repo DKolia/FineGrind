@@ -9,13 +9,13 @@ class App extends Component {
     super();
     this.state = {
       username: '',
-      userID: '45',
-      allJobs: [{_id: '45'}],
-      loggedIn: true,
+      userID: '',
+      allJobs: [],
+      loggedIn: false,
       createJobView: false,
       loginView: false,
       createAccountView: false,
-      viewAccountView: true
+      viewAccountView: false
     }
   }
   //used to get color of all subsequent methods correct
@@ -69,18 +69,20 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <div className="mapContainer">
-          <Maps
-            containerElement={<div style={{ height: `900px` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg&callback=initMap"
-loadingElement={<div style={{ height: `100%` }} />}
-          />
+        <div className='MainContainer'>
+          <div className="mapContainer">
+            <Maps
+              containerElement={<div style={{ height: `900px` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg&callback=initMap"
+  loadingElement={<div style={{ height: `100%` }} />}
+            />
+          </div>
+
+
+          {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
+          {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
         </div>
-
-
-        {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
-        {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
         <Footer />
       </div>
     );

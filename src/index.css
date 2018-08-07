@@ -9,12 +9,18 @@ body {
 
 .app {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-end;}
 
 .mapContainer {
-  width: 50vw;
+  width: 66vw;
   height: 70%;
+}
+
+.MainContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
 
 h1 {
@@ -23,7 +29,7 @@ h1 {
 
 footer {
   width: 100vw;
-  height: 10vh;
+  height: 7vh;
   background-color: gray;
   color: yellow;
   display: flex;
