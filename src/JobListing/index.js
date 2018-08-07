@@ -14,5 +14,4 @@ const JobListing = (props) => {
 	
 }
 
-
 export default JobListing;

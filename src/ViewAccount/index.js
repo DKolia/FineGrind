@@ -39,7 +39,8 @@ class ViewAccount extends Component {
 						'Content-Type': 'application/json'
 					}
 	  			})
-	  			this.props.updateUserInfo(updatedUser);
+	  			const updatedUserJSON= updatedUser.json();
+	  			this.props.updateUserInfo(updatedUserJSON.data);
 
 	  		} catch (err) {
 	  			console.log('Error with handleSubmit in ViewAccount', err)

@@ -6,6 +6,7 @@ import ViewAccount from './ViewAccount'
 import Header from "./Header";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
+import FilterContainer from './FilterContainer'
 
 class App extends Component {
   constructor(){
@@ -18,7 +19,8 @@ class App extends Component {
       createJobView: false,
       loginView: false,
       createAccountView: false,
-      viewAccountView: false
+      viewAccountView: false,
+
     }
   }
   //used to get color of all subsequent methods correct
@@ -30,7 +32,8 @@ class App extends Component {
     //this is where you want to fetch data when you want to it exist at thes beginning of your app
     this.getJobs().then((jobs) => {
       this.setState({
-        allJobs: jobs.data
+        allJobs: jobs.data,
+        filteredJobs: jobs.data
       })
     }).catch((err) => {
       console.log(err, 'error with componenent did mount')
@@ -70,16 +73,19 @@ class App extends Component {
   }
 
   render() {
+        // <Header />
+        // <Login />
+        // <CreateAccount />
     return (
       <div className="app">
 
-        <Header />
-        <Login />
-        <CreateAccount />
+ 
 
 
         <div className='MainContainer'>
+
           <div className="mapContainer">
+
             <Maps
               containerElement={<div style={{ height: `80vh` }} />}
               mapElement={<div style={{ height: `100%` }} />}
@@ -88,12 +94,19 @@ class App extends Component {
           </div>
 
           <div className='sidebar'>
+
+            <FilterContainer allJobs={this.state.allJobs} />
+
             {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
+
             {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
+
           </div>
+
         </div>
 
         <Footer />
+
       </div>
     );
   }
