@@ -3,6 +3,9 @@ import Maps from "./Maps";
 import Footer from "./Footer";
 import NewJob from './NewJob'
 import ViewAccount from './ViewAccount'
+import Header from "./Header";
+import Login from "./Login";
+import CreateAccount from "./CreateAccount";
 
 class App extends Component {
   constructor(){
@@ -69,6 +72,12 @@ class App extends Component {
   render() {
     return (
       <div className="app">
+
+        <Header />
+        <Login />
+        <CreateAccount />
+
+
         <div className='MainContainer'>
           <div className="mapContainer">
             <Maps
@@ -83,6 +92,7 @@ class App extends Component {
             {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
           </div>
         </div>
+
         <Footer />
       </div>
     );
