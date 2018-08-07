@@ -5,7 +5,9 @@ body {
   display: flex;
   align-items: flex-start;
   flex-flow: column;
+  max-height: 100vh;
 }
+
 
 .app {
   display: flex;
@@ -14,7 +16,7 @@ body {
 
 .mapContainer {
   width: 66vw;
-  height: 70%;
+  height: 50%;
 }
 
 .MainContainer {
@@ -29,7 +31,7 @@ h1 {
 
 footer {
   width: 100vw;
-  height: 7vh;
+  height: 9vh;
   background-color: gray;
   color: yellow;
   display: flex;

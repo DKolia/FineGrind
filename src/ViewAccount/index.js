@@ -9,7 +9,8 @@ class ViewAccount extends Component {
 		this.state = {
 			username: this.props.username,
 			pass1: '',
-			pass2: ''
+			pass2: '',
+			loginFail: false
 		}
 	}
 	//used to get color of all subsequent methods correct
@@ -26,6 +27,9 @@ class ViewAccount extends Component {
   	handleSubmit = async (e) => {
   		e.preventDefault();
   		if(this.state.pass1 === this.state.pass2 && this.state.pass1 !== ''){
+  			this.setState({
+  				loginFail: false
+  			})
 	  		try{
 	  			const updatedUser = await fetch(`http://localhost:5000/api/v1/users/${this.props.userID}`, {
 	  				method: 'PUT',
@@ -41,7 +45,9 @@ class ViewAccount extends Component {
 	  			console.log('Error with handleSubmit in ViewAccount', err)
 	  		}
   		} else {
-  			//This is if passwords don't match
+  			this.setState({
+  				loginFail: true
+  			})
   		}
 
   	}
@@ -58,7 +64,8 @@ class ViewAccount extends Component {
 					<input type='password' name='pass1' value={this.state.pass1} onChange={this.handleChange} /><br/>
 					<small>Confirm Password</small><br/>
 					<input type='password' name='pass2' value={this.state.pass2} onChange={this.handleChange} /><br/>
-					<button>Save Changes</button>
+					<button>Save Changes</button><br/>
+					{(this.state.loginFail) ? <small>Passwords do not match. Please try again</small> : null}
 				</form><br/>
 
 				<div>

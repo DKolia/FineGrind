@@ -72,7 +72,7 @@ class App extends Component {
         <div className='MainContainer'>
           <div className="mapContainer">
             <Maps
-              containerElement={<div style={{ height: `900px` }} />}
+              containerElement={<div style={{ height: `80vh` }} />}
               mapElement={<div style={{ height: `100%` }} />}
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg&callback=initMap"
   loadingElement={<div style={{ height: `100%` }} />}
