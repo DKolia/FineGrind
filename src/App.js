@@ -18,6 +18,7 @@ class App extends Component {
         <Login />
         <CreateAccount />
 
+
         <div className="mapContainer">
           <Maps
             containerElement={<div style={{ height: `900px` }} />}
