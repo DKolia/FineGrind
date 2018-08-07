@@ -18,8 +18,8 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 
 const Maps = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    defaultZoom={9}
+    defaultCenter={{ lat: 41.8, lng: -88 }}
   >
   </GoogleMap>
 ))

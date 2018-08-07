@@ -9,7 +9,6 @@ const JobListing = (props) => {
 			<h3>{props.title}</h3>
 			<h4>${props.pay}</h4>
 			<h4>{props.category}</h4>
-
 		</div>
 	)
 	
