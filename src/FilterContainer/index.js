@@ -27,7 +27,7 @@ class Filter extends Component {
   		if(this.state.payFilter.length !== 0){
 	  		const tempList = this.state.filteredList.filter(job => {
 	  			//loop over all pay filters and compare with job pay
-	  			for(let i = 0; i < this.state.payFilter.length; i+=2) {
+	  			for(let i = 0; i < this.state.payFilter.length; i += 2) {
 	  				if(this.state.payFilter[i] < job.pay && this.state.payFilter[i+1] > job.pay) {
 	  					return job
 	  				} else {

@@ -8,6 +8,18 @@ class LocationFilter extends Component {
 			location: this.props.locationFilter
 		}
 	}
+
+	//used to get color of all subsequent methods correct
+  	placeholderFunction = () => {
+
+  	}
+
+  	handleChange = (e) => {
+  		this.setState({
+  			location: e.target.value
+  		})
+  	}
+
 	render() {
 		return (
 			<div>

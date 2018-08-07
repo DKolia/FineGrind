@@ -15,15 +15,18 @@ class CategoryFilter extends Component {
   	}
 
   	handleChange = (e) => {
-  		for(let i = 0; i <= this.state.categories.length; i++) {
+  		//only add the new filter, if it isn't already in the filterlist
+  		let repeatFilter = false;
+  		for(let i = 0; i < this.state.categories.length; i++) {
   			if(this.state.categories[i] === e.target.value) {
-  				continue;
-  			} else {	
-  				console.log('got inside of it statement')
-  				this.setState({
-  					categories: [...this.state.categories, e.target.value]
-  				})
-  			}
+  				repeatFilter = true;
+  			} 
+  		}
+
+  		if(repeatFilter === false) {
+  			this.setState({
+  				categories: [...this.state.categories, e.target.value]
+  			})
   		}
   	}
 
