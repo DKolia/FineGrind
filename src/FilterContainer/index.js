@@ -63,6 +63,9 @@ class Filter extends Component {
   	}
 
   	locationFilter = () => {
+  		if(this.state.locationFilter !== '') {
+  			//do filtering here
+  		}
 
   	}
 

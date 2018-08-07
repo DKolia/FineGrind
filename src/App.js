@@ -20,6 +20,7 @@ class App extends Component {
       loginView: false,
       createAccountView: false,
       viewAccountView: false,
+      filterView: true
 
     }
   }
@@ -95,7 +96,7 @@ class App extends Component {
 
           <div className='sidebar'>
 
-            <FilterContainer allJobs={this.state.allJobs} />
+            {this.state.filterView ? <FilterContainer allJobs={this.state.allJobs}/> : null }
 
             {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
 
