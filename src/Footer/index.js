@@ -6,6 +6,7 @@ function Footer() {
       <p><a href="#">Copyright 2018</a></p>
       <p><a href="#">GitHub</a></p>
       <p><a href="#">About</a></p>
+      <p><a href="#">Contact</a></p>
     </footer>
   )
 }

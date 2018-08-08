@@ -22,7 +22,8 @@ class App extends Component {
       loginView: false,
       createAccountView: false,
       viewAccountView: false,
-      filterView: true
+      filterView: true,
+      errorMsg: ''
     }
   }
   //used to get color of all subsequent methods correct
@@ -92,9 +93,8 @@ class App extends Component {
           filterView: true
         })
       } else {
-        console.log("Registration failure!");
-        <p>Unable to login, check username or password.</p>
-        this.LoginView == true;
+        // console.log("Registration failure!");
+        // setsttate(err = "no dude")
       }
     }
     catch (err) {
@@ -149,12 +149,16 @@ class App extends Component {
 
 
   render() {
-        // <Header />
-        // <Login />
     return (
       <div className="app">
-        <Header />
-        
+        <Header loggedIn={this.state.loggedIn}/>
+      {
+        this.state.errorMsg
+        ?
+        <p>{this.state.errorMsg}</p>
+        :
+        null
+      }
 
         <div className='MainContainer'>
 
@@ -173,17 +177,17 @@ class App extends Component {
             <Switch>
 
               <Route exact path='/' component={ FilterContainer }/>
-              <Route 
-                exact path='/login' 
-                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.loggedIn} />}
+              <Route
+                exact path='/login'
+                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} />}
               />
-              <Route exact path='/register' 
+              <Route exact path='/register'
                 render={() => <CreateAccount register={this.register}/>}
               />
-              <Route exact path='/account' 
+              <Route exact path='/account'
                 render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/>}
               />
-              <Route exact path='/addgrind' 
+              <Route exact path='/addgrind'
                 render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID}  />}
               />
 
@@ -201,19 +205,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-//{this.state.filterView ? <FilterContainer allJobs={this.state.allJobs}/> : null }
-
-//{this.state.loggedIn === false && this.state.loginView ? <Login loginSubmit={this.loginSubmit}/> : null}
-
-//{(this.state.loggedIn === false && this.state.createAccountView) ? <CreateAccount register={this.register}/> : null}
-
-//{(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
-
-//{(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
