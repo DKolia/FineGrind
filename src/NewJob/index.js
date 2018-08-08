@@ -30,6 +30,11 @@ class NewJob extends Component {
 		e.preventDefault();
 		console.log(this.state.street.replace(/ /g, "+") + ",+" + this.state.city + ",+" + this.state.state);
 
+const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"
+
+// Fetch request to Google API using the same URL we just created
+// Set variable equal to fetch
+// Extract Long/Lat Object
 
 		// // remove spaces from street, replace with +
 		// this.state.street.replace(/ /g, "+")
