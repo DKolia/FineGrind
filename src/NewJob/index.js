@@ -14,7 +14,7 @@ class NewJob extends Component {
 			ownerID: '',
 			street: '',
 			city: '',
-			state: '', 
+			state: '',
 			country: 'USA'
 		}
 	}
@@ -28,6 +28,22 @@ class NewJob extends Component {
 	handleSubmit = async (e) => {
 		//prevent page from refreshing upon hitting the submit button
 		e.preventDefault();
+		console.log(this.state.street.replace(/ /g, "+") + ",+" + this.state.city + ",+" + this.state.state);
+
+
+		// // remove spaces from street, replace with +
+		// this.state.street.replace(/ /g, "+")
+		// city.replace(/ /g, "+")
+		// // concat street, city, state, country variables,
+		// searchString = this.state.street + this.state.city + this.state.state + this.state.country
+
+		// save that to a varaible
+
+
+
+		// send variable to api
+
+
 		//add the user's id to the body
 		this.setState({
 			ownerID: this.props.userID
@@ -68,7 +84,7 @@ class NewJob extends Component {
 
 	render() {
 		/*
-		
+
 		This will render a form which will allow the user to input information about the job and upon submission, the information will be sent to the server to request it be added to the database.
 
 		*/
@@ -99,10 +115,17 @@ class NewJob extends Component {
 					</select><br/>
 					<small>Job Pay ($/hr)</small><br/>
 					<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
-					<small>Location of Job</small><br/>
-					<input type='text' name='location' placeholder='Location of Job' value={this.state.location} onChange={this.handleChange} /><br/>
+
+					<small>Address of Job</small><br/>
+					<input type="text" name="street" placeholder="street address" value={this.state.street} onChange={this.handleChange} /><br/>
+					<small>City</small><br/>
+					<input type="text" name="city" placeholder="city" value={this.state.city} onChange={this.handleChange} /><br/>
+					<small>State</small><br/>
+					<input type="text" name="state" placeholder="state" value={this.state.state} onChange={this.handleChange} /><br/>
+
 					<small>Phone Number</small><br/>
 					<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
+
 					<small>Job Description</small><br/>
 					<textarea name='body' placeholder='Job Description' value={this.state.body} onChange={this.handleChange} /><br/>
 					<button>Create New Job</button>
