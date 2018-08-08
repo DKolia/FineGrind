@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import JobListing from '../JobListing';
+import { Redirect } from 'react-router-dom'
 
 
 
@@ -55,31 +56,35 @@ class ViewAccount extends Component {
 
 
 	render() {
-		return (
-			<div>
-				<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
-				<form onSubmit={this.handleSubmit}>
-					<small>Email:</small> <br/>
-					<input type='email' name='username' value={this.state.username} onChange={this.handleChange} /><br/>
-					<small>Password:</small><br/>
-					<input type='password' name='pass1' value={this.state.pass1} onChange={this.handleChange} /><br/>
-					<small>Confirm Password</small><br/>
-					<input type='password' name='pass2' value={this.state.pass2} onChange={this.handleChange} /><br/>
-					<button>Save Changes</button><br/>
-					{(this.state.loginFail) ? <small>Passwords do not match. Please try again</small> : null}
-				</form><br/>
-
+		if(this.props.loggedIn) {
+			return (
 				<div>
-					<h2>Test</h2>
-					{this.props.allJobs.map((userJob, i) => {
-						if(userJob._id === this.props.userID) {
-							return <JobListing key={i}/> 
-						} 
-						return null
-					})}
+					<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+					<form onSubmit={this.handleSubmit}>
+						<small>Email:</small> <br/>
+						<input type='email' name='username' value={this.state.username} onChange={this.handleChange} /><br/>
+						<small>Password:</small><br/>
+						<input type='password' name='pass1' value={this.state.pass1} onChange={this.handleChange} /><br/>
+						<small>Confirm Password</small><br/>
+						<input type='password' name='pass2' value={this.state.pass2} onChange={this.handleChange} /><br/>
+						<button>Save Changes</button><br/>
+						{(this.state.loginFail) ? <small>Passwords do not match. Please try again</small> : null}
+					</form><br/>
+
+					<div>
+						<h2>Test</h2>
+						{this.props.allJobs.map((userJob, i) => {
+							if(userJob._id === this.props.userID) {
+								return <JobListing key={i}/> 
+							} 
+							return null
+						})}
+					</div>
 				</div>
-			</div>
-		)
+			)
+		} else {
+			return <Redirect to={'/'} />
+		}
 	}
 }
 

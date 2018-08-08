@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 
 
 class NewJob extends Component {
@@ -15,7 +16,8 @@ class NewJob extends Component {
 			street: '',
 			city: '',
 			state: '', 
-			country: 'USA'
+			country: 'USA', 
+			submitted: false
 		}
 	}
 
@@ -50,12 +52,15 @@ class NewJob extends Component {
 			//if the server accepted the new job, add the job to the app.js state
 			if(newJobJSON.status === 200) {
 				this.props.updateJobs(newJobJSON.data)
+				this.setState({
+					submitted: true
+				})
 			} else {
 				console.log("Error with adding new job")
 			}
 
 		} catch (err) {
-			console.log('Error with handleSubmit in NewJob.js')
+			console.log(err, 'Error with handleSubmit in NewJob.js')
 		}
 
 	}
@@ -68,49 +73,48 @@ class NewJob extends Component {
 	}
 
 	render() {
-		/*
 		
-		This will render a form which will allow the user to input information about the job and upon submission, the information will be sent to the server to request it be added to the database.
+		if(this.props.loggedIn){
+			return (
+				<div>
+					{this.state.submitted ? <Redirect to={'/'} /> : null }
+					<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+					<form onSubmit={this.handleSubmit}>
+						<small>Job Title</small><br/>
+						<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
+						<small>Type of Work</small><br/>
+						<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
+							<option value='Automotive'>Automotive</option>
+							<option value='Bartending'>Bartending</option>
+							<option value='Catering'>Catering</option>
+							<option value='Child Care'>Child Care</option>
+							<option value='Electrical'>Electrical</option>
+							<option value='Gardening'>Gardening</option>
+							<option value='Housekeeping'>Housekeeping</option>
+							<option value='Pet Services'>Pet Services</option>
+							<option value='Photography'>Photography</option>
+							<option value='Plumbing'>Plumbing</option>
+							<option value='Security'>Security</option>
+							<option value='Serving'>Serving</option>
+							<option value='Trash Hauling'>Trash Hauling</option>
+							<option value='Yard Work'>Yard Work</option>
+						</select><br/>
+						<small>Job Pay ($/hr)</small><br/>
+						<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
+						<small>Location of Job</small><br/>
+						<input type='text' name='location' placeholder='Location of Job' value={this.state.location} onChange={this.handleChange} /><br/>
+						<small>Phone Number</small><br/>
+						<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
+						<small>Job Description</small><br/>
+						<textarea name='body' placeholder='Job Description' value={this.state.body} onChange={this.handleChange} /><br/>
+						<button>Create New Job</button>
 
-		*/
-
-
-		return (
-			<div>
-				<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
-				<form onSubmit={this.handleSubmit}>
-					<small>Job Title</small><br/>
-					<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
-					<small>Type of Work</small><br/>
-					<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
-						<option value='Automotive'>Automotive</option>
-						<option value='Bartending'>Bartending</option>
-						<option value='Catering'>Catering</option>
-						<option value='Child Care'>Child Care</option>
-						<option value='Electrical'>Electrical</option>
-						<option value='Gardening'>Gardening</option>
-						<option value='Housekeeping'>Housekeeping</option>
-						<option value='Pet Services'>Pet Services</option>
-						<option value='Photography'>Photography</option>
-						<option value='Plumbing'>Plumbing</option>
-						<option value='Security'>Security</option>
-						<option value='Serving'>Serving</option>
-						<option value='Trash Hauling'>Trash Hauling</option>
-						<option value='Yard Work'>Yard Work</option>
-					</select><br/>
-					<small>Job Pay ($/hr)</small><br/>
-					<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
-					<small>Location of Job</small><br/>
-					<input type='text' name='location' placeholder='Location of Job' value={this.state.location} onChange={this.handleChange} /><br/>
-					<small>Phone Number</small><br/>
-					<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
-					<small>Job Description</small><br/>
-					<textarea name='body' placeholder='Job Description' value={this.state.body} onChange={this.handleChange} /><br/>
-					<button>Create New Job</button>
-
-				</form>
-			</div>
-		)
+					</form>
+				</div>
+			)
+		} else {
+			return <Redirect to={'/'} />
+		}
 	}
 }
 

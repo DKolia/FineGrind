@@ -157,14 +157,15 @@ class App extends Component {
   updateJobs = (job) => {
     console.log(job)
     const jobsArray = this.state.allJobs;
+    jobsArray.push(job)
     this.setState({
-      allJobs: jobsArray.push(job)
+      allJobs: jobsArray
     })
   }
 
 
   render() {
-    console.log(this.state.allJobs)
+    console.log(this.state.allJobs, 'THIS IS ALL JOBS')
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
@@ -204,7 +205,7 @@ class App extends Component {
                 render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs} loggedIn={this.state.loggedIn}/>}
               />
               <Route exact path='/addgrind'
-                render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID}  />}
+                render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID} loggedIn={this.state.loggedIn} />}
               />
 
             </Switch>
