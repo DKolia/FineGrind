@@ -7,6 +7,8 @@ import Header from "./Header";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
 import FilterContainer from './FilterContainer'
+import { Route, Switch } from 'react-router-dom';
+
 
 class App extends Component {
   constructor(){
@@ -15,9 +17,9 @@ class App extends Component {
       username: '',
       userID: '',
       allJobs: [],
-      loggedIn: true,
+      loggedIn: false,
       createJobView: false,
-      loginView: true,
+      loginView: false,
       createAccountView: false,
       viewAccountView: false,
       filterView: true
@@ -153,7 +155,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <Login loginSubmit={this.loginSubmit}/>
+        
 
         <div className='MainContainer'>
 
@@ -168,12 +170,18 @@ class App extends Component {
 
           <div className='sidebar'>
 
-            {this.state.filterView ? <FilterContainer allJobs={this.state.allJobs}/> : null }
+            
 
-            {(this.state.loggedIn == false && this.state.loginView == true) ? <CreateAccount register={this.register}/> : null}
-            {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
+              {this.state.loggedIn === false && this.state.loginView ? <Login loginSubmit={this.loginSubmit}/> : null}
 
-            {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
+              {this.state.filterView ? <FilterContainer allJobs={this.state.allJobs}/> : null }
+
+              {(this.state.loggedIn === false && this.state.createAccountView) ? <CreateAccount register={this.register}/> : null}
+              {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
+
+              {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
+
+            
 
           </div>
 
