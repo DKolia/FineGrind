@@ -19,7 +19,6 @@ class CreateAccount extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Handle Submit was called");
     // this.props.login(this.state.email);
 
     // call the register function that was passed in as props
