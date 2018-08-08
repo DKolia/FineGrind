@@ -30,6 +30,13 @@ class CategoryFilter extends Component {
   		}
   	}
 
+  	handleClick = (e) => {
+  		const newCategoriesList = this.state.categories.filter(category => category !== e.target.id)
+  		this.setState({
+  			categories: newCategoriesList
+  		})
+  	}
+
 	render() {
 		return (
 			<div>
@@ -53,7 +60,7 @@ class CategoryFilter extends Component {
 						<option value='Yard Work'>Yard Work</option>
 					</select><br/>
 				</form>
-				{this.state.categories.map(category => <small>{category}</small>)}
+				{this.state.categories.map(category => <small id={category} onClick={this.handleClick}>{category}</small>)}
 			</div>
 		)
 	}
