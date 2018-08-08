@@ -155,6 +155,7 @@ class App extends Component {
 
   //used to add new job to local dataset if user creates a new job posting
   updateJobs = (job) => {
+    console.log(job)
     const jobsArray = this.state.allJobs;
     this.setState({
       allJobs: jobsArray.push(job)
@@ -163,6 +164,7 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state.allJobs)
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
