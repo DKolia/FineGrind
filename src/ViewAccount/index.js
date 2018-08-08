@@ -35,7 +35,7 @@ class ViewAccount extends Component {
   				password: this.state.pass1
   			})
 	  		try{
-	  			const updatedUser = await fetch('http://localhost:5000/api/v1/users/5b6b58ed72ce9c8b2dd56eff', {
+	  			const updatedUser = await fetch(`http://localhost:5000/api/v1/users/${this.props.userID}`, {
 	  				method: 'PUT',
 	  				credentials: 'include',
 					body: JSON.stringify(this.state),
@@ -43,9 +43,8 @@ class ViewAccount extends Component {
 						'Content-Type': 'application/json'
 					}
 	  			})
-	  			//${this.props.userID}
+
 	  			const updatedUserJSON = await updatedUser.json();
-	  			console.log(updatedUserJSON)
 
 	  			if(updatedUserJSON.status === 200){
 	  				this.props.updateUserInfo(updatedUserJSON.data);
@@ -69,6 +68,30 @@ class ViewAccount extends Component {
 
   	}
 
+  	handleDelete = async (e) => {
+  		e.preventDefault()
+  		try{
+  			const deletedUser = await fetch(`http://localhost:5000/api/v1/users/${this.props.userID}`, {
+  				method: 'DELETE',
+	  			credentials: 'include',
+				body: JSON.stringify(this.state),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+  			})
+
+  			const deletedUserJSON = await deletedUser.json();
+
+  			if(deletedUserJSON.status === 200) {
+  				//this will refresh the page
+  				window.location.href = "http://localhost:3000/";
+  			}
+
+  		} catch (err) {
+  			console.log('Error trying to delete user')
+  		}
+  	}
+
 
 	render() {
 		if(this.props.loggedIn) {
@@ -86,6 +109,10 @@ class ViewAccount extends Component {
 						<button>Save Changes</button><br/>
 						{(this.state.loginFail) ? <small>Passwords do not match. Please try again</small> : null}
 					</form><br/>
+
+					<form onSubmit={this.handleDelete}>
+						<button>Delete User</button>
+					</form>
 
 					<div>
 						<h2>Test</h2>
