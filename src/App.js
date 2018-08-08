@@ -14,17 +14,91 @@ class App extends Component {
       username: '',
       userID: '',
       allJobs: [],
-      loggedIn: false,
+      loggedIn: true,
       createJobView: false,
-      loginView: false,
+      loginView: true,
       createAccountView: false,
-      viewAccountView: false
+      viewAccountView: false,
+      filterView: true
     }
   }
   //used to get color of all subsequent methods correct
   placeholderFunction = () => {
 
   }
+
+
+  loginSubmit = async (userLogin) => {
+
+    console.log(userLogin);
+    const loggedUser = {
+      username: userLogin.emaillogin,
+      password: userLogin.passwordlogin,
+    }
+    console.log(loggedUser)
+
+  try {
+    console.log(loggedUser);
+    const foundUserData = await fetch("http://localhost:5000/api/v1/users/login", {
+      method: "POST",
+      body: JSON.stringify(loggedUser),
+      headers: {
+        "Content-Type": "application/json"
+
+      }
+    })
+      const foundUser = await foundUserData.json()
+      console.log(foundUser);
+    } catch (err){
+      console.error(err, ' error with login in App.js')
+    }
+  }
+
+
+
+
+
+  register = async (registrationFormDataObj) => {
+    console.log(registrationFormDataObj, " this is registrationFormDataObj in register() in  App.js");
+
+    // build a new object that matches User schema to send to '/register'
+    const userPass = {
+      username: registrationFormDataObj.email,
+      password: registrationFormDataObj.password,
+    }
+
+    try {
+      console.log("Register function was called");
+      const registerData = await fetch("http://localhost:5000/api/v1/users/register", {
+        method: "POST",
+        body: JSON.stringify(userPass), // object that was in state in CreateAccount
+        headers: {
+          "Content-Type": "application/json"
+
+        }
+      })
+      const registration = await registerData.json();
+      console.log(registration);
+
+
+      if (registration.status == 200) {
+        console.log("Registration success!");
+        this.setState({
+          loggedIn: true,
+          loginView: false,
+          filterView: true
+        })
+      } else {
+        console.log("Registration failure!");
+        <p>Unable to login, check username or password.</p>
+        this.LoginView == true;
+      }
+    }
+    catch (err) {
+      console.error(err, ' error with register() in App.js')
+    }
+  }
+
 
   componentDidMount() {
     //this is where you want to fetch data when you want to it exist at thes beginning of your app
@@ -56,7 +130,7 @@ class App extends Component {
       return jobsJSON
 
     } catch (err) {
-      console.log('Error with getJobs in App.js', err) 
+      console.log('Error with getJobs in App.js', err)
       return err
     }
   }
@@ -69,13 +143,14 @@ class App extends Component {
     })
   }
 
+
   render() {
     return (
       <div className="app">
 
         <Header />
-        <Login />
-        <CreateAccount />
+        <Login loginSubmit={this.loginSubmit}/>
+
 
 
         <div className='MainContainer'>
@@ -88,6 +163,8 @@ class App extends Component {
           </div>
 
           <div className='sidebar'>
+
+            {(this.state.loggedIn == false && this.state.loginView == true) ? <CreateAccount register={this.register}/> : null}
             {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
             {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
           </div>
