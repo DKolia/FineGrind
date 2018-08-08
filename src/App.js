@@ -32,18 +32,16 @@ class App extends Component {
 
 
   loginSubmit = async (userLogin) => {
-
-    console.log(userLogin);
     const loggedUser = {
       username: userLogin.emaillogin,
       password: userLogin.passwordlogin,
     }
-    console.log(loggedUser)
 
   try {
     console.log(loggedUser);
     const foundUserData = await fetch("http://localhost:5000/api/v1/users/login", {
       method: "POST",
+      credentials: 'include',
       body: JSON.stringify(loggedUser),
       headers: {
         "Content-Type": "application/json"
@@ -62,7 +60,6 @@ class App extends Component {
 
 
   register = async (registrationFormDataObj) => {
-    console.log(registrationFormDataObj, " this is registrationFormDataObj in register() in  App.js");
 
     // build a new object that matches User schema to send to '/register'
     const userPass = {
@@ -71,20 +68,29 @@ class App extends Component {
     }
 
     try {
-      console.log("Register function was called");
       const registerData = await fetch("http://localhost:5000/api/v1/users/register", {
         method: "POST",
+        credentials: 'include',
         body: JSON.stringify(userPass), // object that was in state in CreateAccount
         headers: {
           "Content-Type": "application/json"
-
         }
       })
       const registration = await registerData.json();
       console.log(registration);
+      if(registration.status === 200) {
+        console.log('successful account creation')
+        this.setState({
+          username: registration.data.username,
+          userID: registration.data._id,
+          loggedIn: true
+        })
+      } else {
+
+      }
 
 
-      if (registration.status == 200) {
+      if (registration.status === 200) {
         console.log("Registration success!");
         this.setState({
           loggedIn: true,
@@ -93,8 +99,8 @@ class App extends Component {
         })
       } else {
         console.log("Registration failure!");
-        <p>Unable to login, check username or password.</p>
-        this.LoginView == true;
+        // <p>Unable to login, check username or password.</p>
+        // this.LoginView = true;
       }
     }
     catch (err) {
@@ -175,10 +181,10 @@ class App extends Component {
               <Route exact path='/' component={ FilterContainer }/>
               <Route 
                 exact path='/login' 
-                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.loggedIn} />}
+                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} />}
               />
               <Route exact path='/register' 
-                render={() => <CreateAccount register={this.register}/>}
+                render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn}/>}
               />
               <Route exact path='/account' 
                 render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/>}

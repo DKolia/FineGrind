@@ -58,7 +58,7 @@ class ViewAccount extends Component {
 		// console.log(this.props.allJobs, 'this props all jobs')
 		return (
 			<div>
-				<a href='/'><img src="../Images/times-circle-regular.svg"></img></a>
+				<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
 				<form onSubmit={this.handleSubmit}>
 					<small>Email:</small> <br/>
 					<input type='email' name='username' value={this.state.username} onChange={this.handleChange} /><br/>

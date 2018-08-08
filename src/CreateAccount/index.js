@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
+
 
 class CreateAccount extends Component {
   constructor() {
@@ -26,20 +28,24 @@ class CreateAccount extends Component {
 
 
   render(){
-    return (
-      <div>
-        <a href='/'><img src="../Images/times-circle-regular.svg"></img></a>
-        <h1>Begin posting FindGrind jobs.</h1>
-        <p>By signing up for our free service, you will be able to post jobs in your area. Please fill out the below to begin.</p>
-        <p>Please enter your email address, a unique password, and confirm the password.</p>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="enter email" />
-          <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="enter password" />
-          <input type="password" name="confirmpassword" onChange={this.handleChange} value={this.state.confirmpassword}  placeholder="confirm password" />
-          <input type="submit" name="submit" />
-        </form>
-      </div>
-    )
+    if(this.props.loggedIn){
+      return <Redirect to={'/'} />
+    } else{
+      return (
+        <div>
+          <a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+          <h1>Begin posting FindGrind jobs.</h1>
+          <p>By signing up for our free service, you will be able to post jobs in your area. Please fill out the below to begin.</p>
+          <p>Please enter your email address, a unique password, and confirm the password.</p>
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="enter email" />
+            <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="enter password" />
+            <input type="password" name="confirmpassword" onChange={this.handleChange} value={this.state.confirmpassword}  placeholder="confirm password" />
+            <input type="submit" name="submit" />
+          </form>
+        </div>
+      )
+    }
   }
 
 }
