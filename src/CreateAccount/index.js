@@ -43,6 +43,7 @@ class CreateAccount extends Component {
             <input type="password" name="confirmpassword" onChange={this.handleChange} value={this.state.confirmpassword}  placeholder="confirm password" />
             <input type="submit" name="submit" />
           </form>
+          {this.props.registerFail ? <small>Registration Error. Please try another username and confirm passwords match.</small>: null}
         </div>
       )
     }

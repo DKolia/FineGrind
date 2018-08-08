@@ -18,6 +18,8 @@ class App extends Component {
       userID: '',
       allJobs: [],
       loggedIn: false,
+      loginFail: false,
+      registerFail: false,
       createJobView: false,
       loginView: false,
       createAccountView: false,
@@ -49,7 +51,22 @@ class App extends Component {
       }
     })
       const foundUser = await foundUserData.json()
-      console.log(foundUser);
+      if(foundUser.status === 200) {
+        console.log('successful account creation')
+        this.setState({
+          username: foundUser.data.username,
+          userID: foundUser.data._id,
+          loggedIn: true, 
+          registerFail: false,
+          loginFail: false
+        })
+      } else {
+        this.setState({
+          loginFail: true
+        })
+        console.log("Login error!");
+      }
+
     } catch (err){
       console.error(err, ' error with login in App.js')
     }
@@ -61,50 +78,47 @@ class App extends Component {
 
   register = async (registrationFormDataObj) => {
 
-    // build a new object that matches User schema to send to '/register'
-    const userPass = {
-      username: registrationFormDataObj.email,
-      password: registrationFormDataObj.password,
-    }
+    if(registrationFormDataObj.password === registrationFormDataObj.confirmpassword) {
+      // build a new object that matches User schema to send to '/register'
+      const userPass = {
+        username: registrationFormDataObj.email,
+        password: registrationFormDataObj.password,
+      }
 
-    try {
-      const registerData = await fetch("http://localhost:5000/api/v1/users/register", {
-        method: "POST",
-        credentials: 'include',
-        body: JSON.stringify(userPass), // object that was in state in CreateAccount
-        headers: {
-          "Content-Type": "application/json"
+      try {
+        const registerData = await fetch("http://localhost:5000/api/v1/users/register", {
+          method: "POST",
+          credentials: 'include',
+          body: JSON.stringify(userPass), // object that was in state in CreateAccount
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        const registration = await registerData.json();
+        console.log(registration);
+        if(registration.status === 200) {
+          console.log('successful account creation')
+          this.setState({
+            username: registration.data.username,
+            userID: registration.data._id,
+            loggedIn: true,
+            registerFail: false,
+            loginFail: false
+          })
+        } else {
+          this.setState({
+            registerFail: true
+          })
+          console.log("Registration error!");
         }
+      }
+      catch (err) {
+        console.error(err, ' error with register() in App.js')
+      }
+    } else {
+      this.setState({
+        registerFail: true
       })
-      const registration = await registerData.json();
-      console.log(registration);
-      if(registration.status === 200) {
-        console.log('successful account creation')
-        this.setState({
-          username: registration.data.username,
-          userID: registration.data._id,
-          loggedIn: true
-        })
-      } else {
-
-      }
-
-
-      if (registration.status === 200) {
-        console.log("Registration success!");
-        this.setState({
-          loggedIn: true,
-          loginView: false,
-          filterView: true
-        })
-      } else {
-        console.log("Registration failure!");
-        // <p>Unable to login, check username or password.</p>
-        // this.LoginView = true;
-      }
-    }
-    catch (err) {
-      console.error(err, ' error with register() in App.js')
     }
   }
 
@@ -181,10 +195,10 @@ class App extends Component {
               <Route exact path='/' component={ FilterContainer }/>
               <Route 
                 exact path='/login' 
-                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} />}
+                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
               />
               <Route exact path='/register' 
-                render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn}/>}
+                render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn} registerFail={this.state.registerFail}/>}
               />
               <Route exact path='/account' 
                 render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/>}

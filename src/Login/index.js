@@ -36,6 +36,7 @@ class Login extends Component {
             <input type="password" name="passwordlogin"onChange={this.handleChange} value={this.state.password} placeholder="enter password" />
             <input type="submit" name="submit" />
           </form>
+          {this.props.loginFail ? <small>Incorrect Username or Password</small> : null}
       </div>
       )
     }
