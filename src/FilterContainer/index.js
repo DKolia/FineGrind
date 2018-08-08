@@ -80,7 +80,7 @@ class Filter extends Component {
   				<LocationFilter locationFilter={this.state.locationFilter} />
   				<CategoryFilter categoryFilter={this.state.categoryFilter} />
 
-  				{this.state.filteredList.map(job => <JobList job={job}/>)}
+  				
   			</div>
   		)
   	}
@@ -88,3 +88,7 @@ class Filter extends Component {
 
 
 export default Filter;
+
+
+
+//{this.state.filteredList.map(job => <JobList job={job}/>)}

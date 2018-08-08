@@ -166,22 +166,20 @@ class App extends Component {
               mapElement={<div style={{ height: `100%` }} />}
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg&callback=initMap" loadingElement={<div style={{ height: `100%` }} />}
             />
+
           </div>
 
           <div className='sidebar'>
 
-            
+            <Switch>
 
-              {this.state.loggedIn === false && this.state.loginView ? <Login loginSubmit={this.loginSubmit}/> : null}
+              <Route exact path='/' component={ FilterContainer }/>
+              <Route exact path='/login' component={ Login } loginSubmit={this.loginSubmit}/>
+              <Route exact path='/register' component={ CreateAccount } register={this.register} />
+              <Route exact path='/account' component={ ViewAccount } userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/>
+              <Route exact path='/addgrind' component={ NewJob } updateJobs={this.updateJobs} userID={this.state.userID}  />
 
-              {this.state.filterView ? <FilterContainer allJobs={this.state.allJobs}/> : null }
-
-              {(this.state.loggedIn === false && this.state.createAccountView) ? <CreateAccount register={this.register}/> : null}
-              {(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
-
-              {(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
-
-            
+            </Switch>
 
           </div>
 
@@ -195,3 +193,19 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
+
+
+
+//{this.state.filterView ? <FilterContainer allJobs={this.state.allJobs}/> : null }
+
+//{this.state.loggedIn === false && this.state.loginView ? <Login loginSubmit={this.loginSubmit}/> : null}
+
+//{(this.state.loggedIn === false && this.state.createAccountView) ? <CreateAccount register={this.register}/> : null}
+
+//{(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
+
+//{(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }

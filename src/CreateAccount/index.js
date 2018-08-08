@@ -28,7 +28,7 @@ class CreateAccount extends Component {
   render(){
     return (
       <div>
-        <img src="./Images/times-circle-regular.svg"></img>
+        <a href='/'><img src="../Images/times-circle-regular.svg"></img></a>
         <h1>Begin posting FindGrind jobs.</h1>
         <p>By signing up for our free service, you will be able to post jobs in your area. Please fill out the below to begin.</p>
         <p>Please enter your email address, a unique password, and confirm the password.</p>

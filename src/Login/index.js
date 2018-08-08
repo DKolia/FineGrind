@@ -21,7 +21,7 @@ class Login extends Component {
   render(){
     return (
       <div>
-        <img src="./Images/times-circle-regular.svg"></img>
+        <a href='/'><img src="../Images/times-circle-regular.svg"></img></a>
         <h1>Please Login to post a FineGrind</h1>
         <p>Login below to begin posting a FineGrind opportunity. If you don't have an account yet, please click <a href="#">here</a> to create one for free.</p>
         <form onSubmit={this.handleSubmit}>

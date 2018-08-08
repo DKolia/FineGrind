@@ -11,7 +11,11 @@ class NewJob extends Component {
 			location: '',
 			phone: '',
 			body: '',
-			ownerID: ''
+			ownerID: '',
+			street: '',
+			city: '',
+			state: '', 
+			country: 'USA'
 		}
 	}
 
@@ -71,37 +75,40 @@ class NewJob extends Component {
 
 
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<small>Job Title</small><br/>
-				<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
-				<small>Type of Work</small><br/>
-				<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
-					<option value='Automotive'>Automotive</option>
-					<option value='Bartending'>Bartending</option>
-					<option value='Catering'>Catering</option>
-					<option value='Child Care'>Child Care</option>
-					<option value='Electrical'>Electrical</option>
-					<option value='Gardening'>Gardening</option>
-					<option value='Housekeeping'>Housekeeping</option>
-					<option value='Pet Services'>Pet Services</option>
-					<option value='Photography'>Photography</option>
-					<option value='Plumbing'>Plumbing</option>
-					<option value='Security'>Security</option>
-					<option value='Serving'>Serving</option>
-					<option value='Trash Hauling'>Trash Hauling</option>
-					<option value='Yard Work'>Yard Work</option>
-				</select><br/>
-				<small>Job Pay ($/hr)</small><br/>
-				<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
-				<small>Location of Job</small><br/>
-				<input type='text' name='location' placeholder='Location of Job' value={this.state.location} onChange={this.handleChange} /><br/>
-				<small>Phone Number</small><br/>
-				<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
-				<small>Job Description</small><br/>
-				<textarea name='body' placeholder='Job Description' value={this.state.body} onChange={this.handleChange} /><br/>
-				<button>Create New Job</button>
+			<div>
+				<a href='/'><img src="../Images/times-circle-regular.svg"></img></a>
+				<form onSubmit={this.handleSubmit}>
+					<small>Job Title</small><br/>
+					<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
+					<small>Type of Work</small><br/>
+					<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
+						<option value='Automotive'>Automotive</option>
+						<option value='Bartending'>Bartending</option>
+						<option value='Catering'>Catering</option>
+						<option value='Child Care'>Child Care</option>
+						<option value='Electrical'>Electrical</option>
+						<option value='Gardening'>Gardening</option>
+						<option value='Housekeeping'>Housekeeping</option>
+						<option value='Pet Services'>Pet Services</option>
+						<option value='Photography'>Photography</option>
+						<option value='Plumbing'>Plumbing</option>
+						<option value='Security'>Security</option>
+						<option value='Serving'>Serving</option>
+						<option value='Trash Hauling'>Trash Hauling</option>
+						<option value='Yard Work'>Yard Work</option>
+					</select><br/>
+					<small>Job Pay ($/hr)</small><br/>
+					<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
+					<small>Location of Job</small><br/>
+					<input type='text' name='location' placeholder='Location of Job' value={this.state.location} onChange={this.handleChange} /><br/>
+					<small>Phone Number</small><br/>
+					<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
+					<small>Job Description</small><br/>
+					<textarea name='body' placeholder='Job Description' value={this.state.body} onChange={this.handleChange} /><br/>
+					<button>Create New Job</button>
 
-			</form>
+				</form>
+			</div>
 		)
 	}
 }
