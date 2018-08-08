@@ -30,6 +30,13 @@ class PayFilter extends Component {
   		}
   	}
 
+  	handleClick = (e) => {
+  		const newPayList = this.state.pay.filter(pay => pay !== e.target.id);
+  		this.setState({
+  			pay: newPayList
+  		})
+  	}
+
 	render() {
 		return (
 			<div>
@@ -37,14 +44,14 @@ class PayFilter extends Component {
 				<form>
 					<select onChange={this.handleChange}>
 						<option selected disabled>Filter By Pay</option>
-						<option value='15'>$0/hr to $15/hr</option>
-						<option value='30'>$15/hr to $30/hr</option>
-						<option value='45'>$30/hr to $45/hr</option>
-						<option value='60'>$45/hr to $60/hr</option>
-						<option value='1000'>&gt;$60/hr</option>
+						<option value='$0/hr to $15/hr'>$0/hr to $15/hr</option>
+						<option value='$15/hr to $30/hr'>$15/hr to $30/hr</option>
+						<option value='$30/hr to $45/hr'>$30/hr to $45/hr</option>
+						<option value='$45/hr to $60/hr'>$45/hr to $60/hr</option>
+						<option value='> $60/hr'>&gt;$60/hr</option>
 					</select>
 				</form>
-				{this.state.pay.map((pay, i) => <small key={i}>{pay}</small>)}
+				{this.state.pay.map((pay, i) => <small id={pay} onClick={this.handleClick} key={i}>{pay}</small>)}
 			</div>
 
 		)
