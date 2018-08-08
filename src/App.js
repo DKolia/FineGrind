@@ -24,7 +24,8 @@ class App extends Component {
       loginView: false,
       createAccountView: false,
       viewAccountView: false,
-      filterView: true
+      filterView: true,
+      errorMsg: ''
     }
   }
   //used to get color of all subsequent methods correct
@@ -105,8 +106,7 @@ class App extends Component {
             registerFail: true
           })
         }
-      }
-      catch (err) {
+      } catch (err) {
         console.error(err, ' error with register() in App.js')
       }
     } else {
@@ -163,12 +163,16 @@ class App extends Component {
 
 
   render() {
-        // <Header />
-        // <Login />
     return (
       <div className="app">
-        <Header />
-        
+        <Header loggedIn={this.state.loggedIn}/>
+      {
+        this.state.errorMsg
+        ?
+        <p>{this.state.errorMsg}</p>
+        :
+        null
+      }
 
         <div className='MainContainer'>
 
@@ -197,7 +201,7 @@ class App extends Component {
               <Route exact path='/account' 
                 render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs} loggedIn={this.state.loggedIn}/>}
               />
-              <Route exact path='/addgrind' 
+              <Route exact path='/addgrind'
                 render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID}  />}
               />
 
@@ -215,19 +219,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-//{this.state.filterView ? <FilterContainer allJobs={this.state.allJobs}/> : null }
-
-//{this.state.loggedIn === false && this.state.loginView ? <Login loginSubmit={this.loginSubmit}/> : null}
-
-//{(this.state.loggedIn === false && this.state.createAccountView) ? <CreateAccount register={this.register}/> : null}
-
-//{(this.state.loggedIn && this.state.viewAccountView) ? <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/> : null}
-
-//{(this.state.loggedIn && this.state.createJobView ) ? <NewJob updateJobs={this.updateJobs} userID={this.state.userID}/> : null }
