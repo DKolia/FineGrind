@@ -40,7 +40,6 @@ class App extends Component {
     }
 
   try {
-    console.log(loggedUser);
     const foundUserData = await fetch("http://localhost:5000/api/v1/users/login", {
       method: "POST",
       credentials: 'include',
@@ -52,7 +51,6 @@ class App extends Component {
     })
       const foundUser = await foundUserData.json()
       if(foundUser.status === 200) {
-        console.log('successful account creation')
         this.setState({
           username: foundUser.data.username,
           userID: foundUser.data._id,
@@ -64,7 +62,6 @@ class App extends Component {
         this.setState({
           loginFail: true
         })
-        console.log("Login error!");
       }
 
     } catch (err){
@@ -95,9 +92,7 @@ class App extends Component {
           }
         })
         const registration = await registerData.json();
-        console.log(registration);
         if(registration.status === 200) {
-          console.log('successful account creation')
           this.setState({
             username: registration.data.username,
             userID: registration.data._id,
@@ -109,7 +104,6 @@ class App extends Component {
           this.setState({
             registerFail: true
           })
-          console.log("Registration error!");
         }
       }
       catch (err) {
@@ -201,7 +195,7 @@ class App extends Component {
                 render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn} registerFail={this.state.registerFail}/>}
               />
               <Route exact path='/account' 
-                render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/>}
+                render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs} loggedIn={this.state.loggedIn}/>}
               />
               <Route exact path='/addgrind' 
                 render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID}  />}

@@ -55,7 +55,6 @@ class ViewAccount extends Component {
 
 
 	render() {
-		// console.log(this.props.allJobs, 'this props all jobs')
 		return (
 			<div>
 				<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>

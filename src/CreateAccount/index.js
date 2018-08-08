@@ -38,7 +38,7 @@ class CreateAccount extends Component {
           <p>By signing up for our free service, you will be able to post jobs in your area. Please fill out the below to begin.</p>
           <p>Please enter your email address, a unique password, and confirm the password.</p>
           <form onSubmit={this.handleSubmit}>
-            <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="enter email" />
+            <input type="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="enter email" />
             <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="enter password" />
             <input type="password" name="confirmpassword" onChange={this.handleChange} value={this.state.confirmpassword}  placeholder="confirm password" />
             <input type="submit" name="submit" />
