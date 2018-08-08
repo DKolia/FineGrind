@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
@@ -6,8 +7,9 @@ function Header() {
       <header>
         <img src="Images/bullhorn-solid.svg"></img>
         <h2>FineGrind</h2>
-        <h3><a href="/register">Create</a></h3>
-        <h3><a href="/login">Login</a></h3>
+
+        <Link to="/register">Create Account</Link>
+        <Link to="/login">Login</Link>
         <h3><a href="#">Contact</a></h3>
       </header>
 

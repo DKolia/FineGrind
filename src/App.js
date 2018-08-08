@@ -23,7 +23,6 @@ class App extends Component {
       createAccountView: false,
       viewAccountView: false,
       filterView: true
-
     }
   }
   //used to get color of all subsequent methods correct
@@ -174,10 +173,19 @@ class App extends Component {
             <Switch>
 
               <Route exact path='/' component={ FilterContainer }/>
-              <Route exact path='/login' component={ Login } loginSubmit={this.loginSubmit}/>
-              <Route exact path='/register' component={ CreateAccount } register={this.register} />
-              <Route exact path='/account' component={ ViewAccount } userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/>
-              <Route exact path='/addgrind' component={ NewJob } updateJobs={this.updateJobs} userID={this.state.userID}  />
+              <Route 
+                exact path='/login' 
+                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.loggedIn} />}
+              />
+              <Route exact path='/register' 
+                render={() => <CreateAccount register={this.register}/>}
+              />
+              <Route exact path='/account' 
+                render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs}/>}
+              />
+              <Route exact path='/addgrind' 
+                render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID}  />}
+              />
 
             </Switch>
 
