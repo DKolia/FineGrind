@@ -84,6 +84,7 @@ class NewJob extends Component {
 						<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
 						<small>Type of Work</small><br/>
 						<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
+							<option disabled selected>Please Pick A Category</option>
 							<option value='Automotive'>Automotive</option>
 							<option value='Bartending'>Bartending</option>
 							<option value='Catering'>Catering</option>
