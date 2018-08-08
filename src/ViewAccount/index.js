@@ -9,6 +9,7 @@ class ViewAccount extends Component {
 		super(props);
 		this.state = {
 			username: this.props.username,
+			password: '',
 			pass1: '',
 			pass2: '',
 			loginFail: false,
@@ -30,7 +31,8 @@ class ViewAccount extends Component {
   		e.preventDefault();
   		if(this.state.pass1 === this.state.pass2 && this.state.pass1 !== ''){
   			this.setState({
-  				loginFail: false
+  				loginFail: false, 
+  				password: this.state.pass1
   			})
 	  		try{
 	  			const updatedUser = await fetch('http://localhost:5000/api/v1/users/5b6b58ed72ce9c8b2dd56eff', {
@@ -49,6 +51,10 @@ class ViewAccount extends Component {
 	  				this.props.updateUserInfo(updatedUserJSON.data);
 	  				this.setState({
 	  					submitted: true
+	  				})
+	  			} else {
+	  				this.setState({
+	  					loginFail: true
 	  				})
 	  			}
 
