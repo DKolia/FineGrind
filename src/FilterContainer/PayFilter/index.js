@@ -17,8 +17,8 @@ class PayFilter extends Component {
   	handleChange = (e) => {
   		//only add the new filter, if it isn't already in the filterlist
   		let repeatFilter = false;
-  		for(let i = 0; i < this.state.pay.length; i++) {
-  			if(this.state.pay[i] === e.target.value) {
+  		for(let i = 0; i < this.props.payFilter.length; i++) {
+  			if(this.props.payFilter[i] === e.target.value) {
   				repeatFilter = true;
   			} 
   		}
@@ -27,6 +27,7 @@ class PayFilter extends Component {
   			this.setState({
   				pay: [...this.state.pay, e.target.value]
   			})
+  			this.props.updatePayFilter(e.target.value, 'add')
   		}
   	}
 
@@ -35,9 +36,11 @@ class PayFilter extends Component {
   		this.setState({
   			pay: newPayList
   		})
+  		this.props.updatePayFilter(e.target.id, 'del')
   	}
 
 	render() {
+		console.log(this.state.pay, 'THIS IS PAY INSIDE PAYFILTER')
 		return (
 			<div>
 				<h3>Filter By Pay:</h3>
@@ -51,7 +54,7 @@ class PayFilter extends Component {
 						<option value='> $60/hr'>&gt;$60/hr</option>
 					</select>
 				</form>
-				{this.state.pay.map((pay, i) => <small id={pay} onClick={this.handleClick} key={i}>{pay}</small>)}
+				{this.state.pay.map((pay, i) => <h4 id={pay} onClick={this.handleClick} key={i}>{pay}</h4>)}
 			</div>
 
 		)

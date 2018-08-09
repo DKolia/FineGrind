@@ -123,7 +123,6 @@ class App extends Component {
     //this is where you want to fetch data when you want to it exist at thes beginning of your app
     // console.log(userLocation, 'this is user location object')
     this.getJobs().then((jobs) => {
-      console.log(jobs.data, " jobs.data in componentDidMount in App")
       this.getUserLocation().then(data => {
         const dataLocation = {data: {lat: data.lat, lng: data.lng}}
         if(jobs.loggedIn === true) {
@@ -196,7 +195,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.allJobs, 'ALL JOBS IN APP.JS')
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>

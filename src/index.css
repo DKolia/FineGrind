@@ -19,6 +19,12 @@ body {
   height: 50%;
 }
 
+.filter {
+  height: 35vh;
+  overflow: scroll;
+
+}
+
 .MainContainer {
   display: flex;
   flex-direction: row-reverse;
@@ -37,7 +43,7 @@ body {
 
 .jobCards {
   overflow: scroll;
-  height: 35vh;
+  height: 45vh;
   border: 1px solid black;
 }
 

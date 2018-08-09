@@ -5,11 +5,9 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 
 
 const MyMap = (props) => {
-  console.log(props.jobs, "this is props.jobs in the maps jcompo")
-
-  const markers = props.jobs.map(job=>{
+  const markers = props.jobs.map((job, i)=>{
     return(
-      <Marker
+      <Marker key={i}
         position={{
           lat: job.location.lat,
           lng: job.location.lng
