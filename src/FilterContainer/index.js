@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import JobList from '../JobListing';
+import JobListing from '../JobListing';
 import PayFilter from './PayFilter';
 import LocationFilter from './LocationFilter';
 import CategoryFilter from './CategoryFilter';
@@ -8,8 +8,10 @@ import CategoryFilter from './CategoryFilter';
 class Filter extends Component {
 	constructor(props) {
 		super(props);
+    console.log(props, " props in constructor in FilterContainer")
+    console.log(this.props, " this.props in constructor in FilterContainer")
 		this.state = {
-			filteredList: this.props.allJobs,
+			filteredList: [],
 			payFilter: [],
 			locationFilter: '',
 			categoryFilter: []
@@ -70,21 +72,34 @@ class Filter extends Component {
   	}
 
     componentDidMount(){
-      this.categoryFilter();
-      this.payFilter();
+      // this.setState({
+      //   filteredList: this.props.allJobs
+      // })
+      // this.categoryFilter();
+      // this.payFilter();
     }
 
   	render() {
-      console.log(this.state.filteredList, 'this is the filtered list')
+      // console.log(this.state.filteredList, 'this is the filtered list')
+      // console.log(this.props.allJobs, " this.props.alljaobs on render in filter contaoner")
+      const jobs = this.props.allJobs.map((j, i)=>{
+        // filter pay
+        return <JobListing job={j} key={i} />
+      })
+      // .filter(() => {
+      //   // filter category
+      // }).filter(() => {
+      //   // filter location
+      // })
   		return (
   			<div className='filterSideBar'>
           <div className='filter'>
   				  <PayFilter payFilter={this.state.payFilter} />
   				  <LocationFilter locationFilter={this.state.locationFilter} />
   				  <CategoryFilter categoryFilter={this.state.categoryFilter} />
-          </div>
+          </div><hr/>
           <div className='jobCards'>
-            {this.state.filteredList.map(job => <JobList job={job}/>)}
+            {jobs}
           </div>
   				
   			</div>

@@ -123,6 +123,7 @@ class App extends Component {
     //this is where you want to fetch data when you want to it exist at thes beginning of your app
     // console.log(userLocation, 'this is user location object')
     this.getJobs().then((jobs) => {
+      console.log(jobs.data, " jobs.data in componentDidMount in App")
       this.getUserLocation().then(data => {
         const dataLocation = {data: {lat: data.lat, lng: data.lng}}
         if(jobs.loggedIn === true) {
@@ -195,7 +196,6 @@ class App extends Component {
 
 
   render() {
-    this.state.loaded ? console.log(typeof Object.keys(this.state.userLocation.data)[0]) : null
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
@@ -229,7 +229,7 @@ class App extends Component {
               />
               <Route 
                 exact path='/login' 
-                render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
+                render={() => <Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
               />
               <Route exact path='/register' 
                 render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn} registerFail={this.state.registerFail}/>}

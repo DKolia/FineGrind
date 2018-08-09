@@ -30,9 +30,6 @@ body {
   max-width: 34vw;
 }
 
-h1 {
-
-}
 
 .jobCard {
   border: 1px solid red;
@@ -41,6 +38,7 @@ h1 {
 .jobCards {
   overflow: scroll;
   height: 35vh;
+  border: 1px solid black;
 }
 
 footer {
@@ -51,6 +49,10 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+h4, h3 {
+  margin: 5px ;
 }
 
 header{
