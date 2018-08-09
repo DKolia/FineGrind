@@ -27,6 +27,7 @@ class CategoryFilter extends Component {
   			this.setState({
   				categories: [...this.state.categories, e.target.value]
   			})
+  			this.props.updateCategoryFilter(e.target.value, 'add')
   		}
   	}
 
@@ -35,6 +36,7 @@ class CategoryFilter extends Component {
   		this.setState({
   			categories: newCategoriesList
   		})
+  		this.props.updateCategoryFilter(e.target.id, 'del')
   	}
 
 	render() {

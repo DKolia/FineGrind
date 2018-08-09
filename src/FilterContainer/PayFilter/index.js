@@ -40,7 +40,6 @@ class PayFilter extends Component {
   	}
 
 	render() {
-		console.log(this.state.pay, 'THIS IS PAY INSIDE PAYFILTER')
 		return (
 			<div>
 				<h3>Filter By Pay:</h3>

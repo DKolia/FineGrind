@@ -10,7 +10,7 @@ class FilterContainer extends Component {
 		super(props);
 		this.state = {
 			filteredList: [],
-			payFilter: ['$45/hr to $60/hr'],
+			payFilter: [],
 			locationFilter: '',
 			categoryFilter: []
 		}
@@ -32,20 +32,11 @@ class FilterContainer extends Component {
       } else {
         const payFilterList = this.state.payFilter;
         const indexNumber = payFilterList.indexOf(payFilter)
-        console.log(indexNumber)
-        console.log(payFilter)
         payFilterList.splice(indexNumber, 1);
-        console.log(payFilterList, 'this is the pay filter list')
         this.setState({
           payFilter: payFilterList
         })
       }
-
-
-
-
-
-
 
   		// if(this.state.payFilter.length !== 0){
 	  	// 	const tempList = this.state.filteredList.filter(job => {
@@ -65,24 +56,42 @@ class FilterContainer extends Component {
   		// }
   	}
 
-  	categoryFilter = () => {
-  		if(this.state.categoryFilter.length !== 0) {
-  			const tempList = this.state.filteredList.filter(job => {
-  				//loop over all category filters and compare with job category
-  				for(let i = 0; i < this.state.categoryFilter.length; i++) {
-  					if(this.state.categoryFilter[i] === job.category) {
-  						return job
-  					} else {
-  						return
-  					}
-  				}
+  	updateCategoryFilter = (categoryFilter, action) => {
+
+      if(action === 'add') {
+        this.setState({
+          categoryFilter: [...this.state.categoryFilter, categoryFilter]
+        })
+      } else {
+        const categoryFilterList = this.state.categoryFilter;
+        const indexNumber = categoryFilterList.indexOf(categoryFilter)
+        categoryFilterList.splice(indexNumber, 1);
+        this.setState({
+          categoryFilter: categoryFilterList
+        })
+      }
+
+
+
+
+
+  		// if(this.state.categoryFilter.length !== 0) {
+  		// 	const tempList = this.state.filteredList.filter(job => {
+  		// 		//loop over all category filters and compare with job category
+  		// 		for(let i = 0; i < this.state.categoryFilter.length; i++) {
+  		// 			if(this.state.categoryFilter[i] === job.category) {
+  		// 				return job
+  		// 			} else {
+  		// 				return
+  		// 			}
+  		// 		}
   	
-  			})
-  			//save the new list to the state for the next method to use
-  			this.setState({
-  				filteredList: tempList
-  			})
-  		}
+  		// 	})
+  		// 	//save the new list to the state for the next method to use
+  		// 	this.setState({
+  		// 		filteredList: tempList
+  		// 	})
+  		// }
   	}
 
   	locationFilter = () => {
@@ -101,7 +110,6 @@ class FilterContainer extends Component {
     }
 
   	render() {
-      console.log(this.state.payFilter, '\nthis is the pay filter');
       console.log(this.state.categoryFilter, '\nthis is the category filter');
       console.log(this.state.locationFilter, '\nthis is the location filter')
       // console.log(this.state.filteredList, 'this is the filtered list')
@@ -136,6 +144,19 @@ class FilterContainer extends Component {
           return <JobListing job={j} />
         }
         
+      }).map((j, i) => {
+        if(this.state.categoryFilter.length !== 0) {
+
+        } else {
+          
+        }
+
+
+
+
+
+
+
       })
       // .filter(() => {
       //   // filter category
@@ -147,7 +168,7 @@ class FilterContainer extends Component {
           <div className='filter'>
   				  <PayFilter payFilter={this.state.payFilter} updatePayFilter={this.updatePayFilter}/>
   				  <LocationFilter locationFilter={this.state.locationFilter} />
-  				  <CategoryFilter categoryFilter={this.state.categoryFilter} />
+  				  <CategoryFilter categoryFilter={this.state.categoryFilter} updateCategoryFilter={this.updateCategoryFilter} />
           </div><hr/>
           <div className='jobCards'>
             {jobs}
