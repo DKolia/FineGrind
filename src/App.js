@@ -55,7 +55,7 @@ class App extends Component {
         this.setState({
           username: foundUser.data.username,
           userID: foundUser.data._id,
-          loggedIn: true, 
+          loggedIn: true,
           registerFail: false,
           loginFail: false
         })
@@ -155,14 +155,17 @@ class App extends Component {
 
   //used to add new job to local dataset if user creates a new job posting
   updateJobs = (job) => {
+    console.log(job)
     const jobsArray = this.state.allJobs;
+    jobsArray.push(job)
     this.setState({
-      allJobs: jobsArray.push(job)
+      allJobs: jobsArray
     })
   }
 
 
   render() {
+    console.log(this.state.allJobs);
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
@@ -191,18 +194,18 @@ class App extends Component {
             <Switch>
 
               <Route exact path='/' component={ FilterContainer }/>
-              <Route 
-                exact path='/login' 
+              <Route
+                exact path='/login'
                 render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
               />
-              <Route exact path='/register' 
+              <Route exact path='/register'
                 render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn} registerFail={this.state.registerFail}/>}
               />
-              <Route exact path='/account' 
+              <Route exact path='/account'
                 render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs} loggedIn={this.state.loggedIn}/>}
               />
               <Route exact path='/addgrind'
-                render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID}  />}
+                render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID} loggedIn={this.state.loggedIn} />}
               />
 
             </Switch>

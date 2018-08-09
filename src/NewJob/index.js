@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 
 
 class NewJob extends Component {
@@ -15,7 +16,8 @@ class NewJob extends Component {
 			street: '',
 			city: '',
 			state: '',
-			country: 'USA'
+			country: 'USA',
+			submitted: false
 		}
 	}
 
@@ -24,13 +26,14 @@ class NewJob extends Component {
 
 	}
 
-	//called when the user presses the submit form button
+	// called when the user presses the submit form button
 	handleSubmit = async (e) => {
 		//prevent page from refreshing upon hitting the submit button
 		e.preventDefault();
-		console.log(this.state.street.replace(/ /g, "+") + ",+" + this.state.city + ",+" + this.state.state);
 
-const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"
+		// Formats the submissions into api-ready query
+		const grinder = this.state.street.replace(/ /g, "+") + ",+" + this.state.city + ",+" + this.state.state;
+		const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=" + grinder + "&key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"
 
 // Fetch request to Google API using the same URL we just created
 // Set variable equal to fetch
@@ -56,6 +59,11 @@ const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=160
 
 		try{
 			//send the form data to the server to create new job posting
+			const jobs = await fetch(grindData);
+			const jobsJSON = await jobs.json();
+			console.log(jobsJSON.results["0"].geometry.location);
+			this.setState({location: jobsJSON.results["0"].geometry.location});
+
 			const newJob = await fetch('http://localhost:5000/api/v1/jobs', {
 				method: 'POST',
 				credentials: 'include',
@@ -66,16 +74,20 @@ const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=160
 			})
 
 			//convert the response from json
-			const newJobJSON = newJob.json();
-			console.log(newJobJSON, 'this is the newJobsJSON');
+			const newJobJSON = await newJob.json();
 
 			//if the server accepted the new job, add the job to the app.js state
-			if(newJobJSON.status === 4000) {
+			if(newJobJSON.status === 200) {
 				this.props.updateJobs(newJobJSON.data)
+				this.setState({
+					submitted: true
+				})
+			} else {
+				console.log("Error with adding new job")
 			}
 
 		} catch (err) {
-			console.log('Error with handleSubmit in NewJob.js')
+			console.log(err, 'Error with handleSubmit in NewJob.js')
 		}
 
 	}
@@ -88,56 +100,52 @@ const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=160
 	}
 
 	render() {
-		/*
 
-		This will render a form which will allow the user to input information about the job and upon submission, the information will be sent to the server to request it be added to the database.
+		if(this.props.loggedIn){
+			return (
+				<div>
+					{this.state.submitted ? <Redirect to={'/'} /> : null }
+					<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+					<form onSubmit={this.handleSubmit}>
+						<small>Job Title</small><br/>
+						<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
+						<small>Type of Work</small><br/>
+						<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
+							<option value='Automotive'>Automotive</option>
+							<option value='Bartending'>Bartending</option>
+							<option value='Catering'>Catering</option>
+							<option value='Child Care'>Child Care</option>
+							<option value='Electrical'>Electrical</option>
+							<option value='Gardening'>Gardening</option>
+							<option value='Housekeeping'>Housekeeping</option>
+							<option value='Pet Services'>Pet Services</option>
+							<option value='Photography'>Photography</option>
+							<option value='Plumbing'>Plumbing</option>
+							<option value='Security'>Security</option>
+							<option value='Serving'>Serving</option>
+							<option value='Trash Hauling'>Trash Hauling</option>
+							<option value='Yard Work'>Yard Work</option>
+						</select><br/>
+						<small>Job Pay ($/hr)</small><br/>
+						<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
+						<small>Address of Job</small><br/>
+						<input type="text" name="street" placeholder="street address" value={this.state.street} onChange={this.handleChange} /><br/>
+						<small>City</small><br/>
+						<input type="text" name="city" placeholder="city" value={this.state.city} onChange={this.handleChange} /><br/>
+						<small>State</small><br/>
+						<input type="text" name="state" placeholder="state" value={this.state.state} onChange={this.handleChange} /><br/>
+						<small>Phone Number</small><br/>
+						<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
+						<small>Job Description</small><br/>
+						<textarea name='body' placeholder='Job Description' value={this.state.body} onChange={this.handleChange} /><br/>
+						<button>Create New Job</button>
 
-		*/
-
-
-		return (
-			<div>
-				<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
-				<form onSubmit={this.handleSubmit}>
-					<small>Job Title</small><br/>
-					<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
-					<small>Type of Work</small><br/>
-					<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
-						<option value='Automotive'>Automotive</option>
-						<option value='Bartending'>Bartending</option>
-						<option value='Catering'>Catering</option>
-						<option value='Child Care'>Child Care</option>
-						<option value='Electrical'>Electrical</option>
-						<option value='Gardening'>Gardening</option>
-						<option value='Housekeeping'>Housekeeping</option>
-						<option value='Pet Services'>Pet Services</option>
-						<option value='Photography'>Photography</option>
-						<option value='Plumbing'>Plumbing</option>
-						<option value='Security'>Security</option>
-						<option value='Serving'>Serving</option>
-						<option value='Trash Hauling'>Trash Hauling</option>
-						<option value='Yard Work'>Yard Work</option>
-					</select><br/>
-					<small>Job Pay ($/hr)</small><br/>
-					<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
-
-					<small>Address of Job</small><br/>
-					<input type="text" name="street" placeholder="street address" value={this.state.street} onChange={this.handleChange} /><br/>
-					<small>City</small><br/>
-					<input type="text" name="city" placeholder="city" value={this.state.city} onChange={this.handleChange} /><br/>
-					<small>State</small><br/>
-					<input type="text" name="state" placeholder="state" value={this.state.state} onChange={this.handleChange} /><br/>
-
-					<small>Phone Number</small><br/>
-					<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
-
-					<small>Job Description</small><br/>
-					<textarea name='body' placeholder='Job Description' value={this.state.body} onChange={this.handleChange} /><br/>
-					<button>Create New Job</button>
-
-				</form>
-			</div>
-		)
+					</form>
+				</div>
+			)
+		} else {
+			return <Redirect to={'/'} />
+		}
 	}
 }
 
