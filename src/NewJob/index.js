@@ -72,13 +72,19 @@ class NewJob extends Component {
 		})
 	}
 
+	exit = (e) => {
+		this.setState({
+			submitted: true
+		})
+	}
+
 	render() {
 		
 		if(this.props.loggedIn){
 			return (
 				<div>
 					{this.state.submitted ? <Redirect to={'/'} /> : null }
-					<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+					<a onClick={this.exit}><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
 					<form onSubmit={this.handleSubmit}>
 						<small>Job Title</small><br/>
 						<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>

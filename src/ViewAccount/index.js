@@ -92,13 +92,20 @@ class ViewAccount extends Component {
   		}
   	}
 
+  	exit = (e) => {
+  		e.preventDefault();
+  		this.setState({
+  			submitted: true
+  		})
+  	}
+
 
 	render() {
 		if(this.props.loggedIn) {
 			return (
 				<div>
 					{this.state.submitted ? <Redirect to={'/'} /> : null}
-					<a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+					<a onClick={this.exit}><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
 					<form onSubmit={this.handleSubmit}>
 						<small>Email:</small> <br/>
 						<input type='email' name='username' value={this.state.username} onChange={this.handleChange} /><br/>

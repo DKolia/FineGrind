@@ -6,7 +6,8 @@ class Login extends Component {
     super();
     this.state = {
       emaillogin: "",
-      passwordlogin: ""
+      passwordlogin: "",
+      submitted: false
     }
   }
 
@@ -19,15 +20,21 @@ class Login extends Component {
     this.props.loginSubmit(this.state);
   }
 
+  exit = (e) => {
+    this.setState({
+      submitted: true
+    })
+  }
+
   render(){
-    if(this.props.loggedIn) {
+    if(this.props.loggedIn || this.state.submitted) {
       return(
         <Redirect to={'/'} />
       )
     } else {
       return (
         <div>
-          <a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+          <a onClick={this.exit}><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
           <h1>Please Login to post a FineGrind</h1>
           <p>Login below to begin posting a FineGrind opportunity. If you don't have an account yet, please click <a href="/register">here</a> to create one for free.</p>
           <form onSubmit={this.handleSubmit}>

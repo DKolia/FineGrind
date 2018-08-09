@@ -9,7 +9,8 @@ class CreateAccount extends Component {
     this.state = {
       email: "",
       password: "",
-      confirmpassword: ""
+      confirmpassword: "",
+      submitted: false
     }
   }
 
@@ -25,14 +26,20 @@ class CreateAccount extends Component {
     this.props.register(this.state);
   }
 
+  exit = (e) => {
+    this.setState({
+      submitted: true
+    })
+  }
+
 
   render(){
-    if(this.props.loggedIn){
+    if(this.props.loggedIn || this.state.submitted){
       return <Redirect to={'/'} />
     } else{
       return (
         <div>
-          <a href='/'><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+          <a onClick={this.exit}><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
           <h1>Begin posting FindGrind jobs.</h1>
           <p>By signing up for our free service, you will be able to post jobs in your area. Please fill out the below to begin.</p>
           <p>Please enter your email address, a unique password, and confirm the password.</p>

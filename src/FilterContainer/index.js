@@ -71,6 +71,7 @@ class Filter extends Component {
 
     componentDidMount(){
       this.categoryFilter();
+      this.payFilter();
     }
 
   	render() {
