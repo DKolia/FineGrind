@@ -125,12 +125,22 @@ class App extends Component {
     this.getJobs().then((jobs) => {
       this.getUserLocation().then(data => {
         const dataLocation = {data: {lat: data.lat, lng: data.lng}}
-        this.setState({
-          allJobs: jobs.data,
-          filteredJobs: jobs.data,
-          userLocation: dataLocation,
-          loaded: true
-        })
+        if(jobs.loggedIn === true) {
+          this.setState({
+            allJobs: jobs.data,
+            filteredJobs: jobs.data,
+            userLocation: dataLocation,
+            loaded: true, 
+            loggedIn: true
+          })
+        } else {
+          this.setState({
+            allJobs: jobs.data,
+            filteredJobs: jobs.data,
+            userLocation: dataLocation,
+            loaded: true
+          })
+        }
       })
     }).catch((err) => {
       console.log(err, 'error with componenent did mount')
