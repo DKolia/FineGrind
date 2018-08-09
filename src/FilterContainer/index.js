@@ -5,7 +5,7 @@ import LocationFilter from './LocationFilter';
 import CategoryFilter from './CategoryFilter';
 
 
-class Filter extends Component {
+class FilterContainer extends Component {
 	constructor(props) {
 		super(props);
     console.log(props, " props in constructor in FilterContainer")
@@ -81,7 +81,7 @@ class Filter extends Component {
 
   	render() {
       // console.log(this.state.filteredList, 'this is the filtered list')
-      // console.log(this.props.allJobs, " this.props.alljaobs on render in filter contaoner")
+      console.log(this.props.allJobs, " this.props.alljaobs on render in filter contaoner")
       const jobs = this.props.allJobs.map((j, i)=>{
         // filter pay
         return <JobListing job={j} key={i} />
@@ -108,7 +108,7 @@ class Filter extends Component {
 }
 
 
-export default Filter;
+export default FilterContainer;
 
 
 

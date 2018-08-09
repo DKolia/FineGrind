@@ -15,8 +15,8 @@ class NewJob extends Component {
 			ownerID: '',
 			street: '',
 			city: '',
-			state: '', 
-			country: 'USA', 
+			state: '',
+			country: 'USA',
 			submitted: false
 		}
 	}
@@ -26,10 +26,21 @@ class NewJob extends Component {
 
 	}
 
-	//called when the user presses the submit form button
+	// called when the user presses the submit form button
 	handleSubmit = async (e) => {
 		//prevent page from refreshing upon hitting the submit button
 		e.preventDefault();
+
+		// Formats the submissions into api-ready query
+		const grinder = this.state.street.replace(/ /g, "+") + ",+" + this.state.city + ",+" + this.state.state;
+		const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=" + grinder + "&key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"
+
+// Fetch request to Google API using the same URL we just created
+// Set variable equal to fetch
+// Extract Long/Lat Object
+// send variable to api
+
+
 		//add the user's id to the body
 		this.setState({
 			ownerID: this.props.userID
@@ -37,6 +48,11 @@ class NewJob extends Component {
 
 		try{
 			//send the form data to the server to create new job posting
+			const jobs = await fetch(grindData);
+			const jobsJSON = await jobs.json();
+			console.log(jobsJSON.results["0"].geometry.location);
+			this.setState({location: jobsJSON.results["0"].geometry.location});
+
 			const newJob = await fetch('http://localhost:5000/api/v1/jobs', {
 				method: 'POST',
 				credentials: 'include',
@@ -48,15 +64,17 @@ class NewJob extends Component {
 
 			//convert the response from json
 			const newJobJSON = await newJob.json();
-
+			console.log(newJobJSON);
 			//if the server accepted the new job, add the job to the app.js state
 			if(newJobJSON.status === 200) {
 				this.props.updateJobs(newJobJSON.data)
+				console.log("newJobJSON is working");
 				this.setState({
 					submitted: true
 				})
 			} else {
 				console.log("Error with adding new job")
+
 			}
 
 		} catch (err) {
@@ -79,7 +97,7 @@ class NewJob extends Component {
 	}
 
 	render() {
-		
+
 		if(this.props.loggedIn){
 			return (
 				<div>
@@ -108,8 +126,12 @@ class NewJob extends Component {
 						</select><br/>
 						<small>Job Pay ($/hr)</small><br/>
 						<input type='number' name='pay' placeholder='Pay' value={this.state.pay} onChange={this.handleChange} /><br/>
-						<small>Location of Job</small><br/>
-						<input type='text' name='location' placeholder='Location of Job' value={this.state.location} onChange={this.handleChange} /><br/>
+						<small>Address of Job</small><br/>
+						<input type="text" name="street" placeholder="street address" value={this.state.street} onChange={this.handleChange} /><br/>
+						<small>City</small><br/>
+						<input type="text" name="city" placeholder="city" value={this.state.city} onChange={this.handleChange} /><br/>
+						<small>State</small><br/>
+						<input type="text" name="state" placeholder="state" value={this.state.state} onChange={this.handleChange} /><br/>
 						<small>Phone Number</small><br/>
 						<input type='number' name='phone' placeholder='Phone Number' value={this.state.phone} onChange={this.handleChange} /><br/>
 						<small>Job Description</small><br/>

@@ -57,7 +57,7 @@ class App extends Component {
         this.setState({
           username: foundUser.data.username,
           userID: foundUser.data._id,
-          loggedIn: true, 
+          loggedIn: true,
           registerFail: false,
           loginFail: false
         })
@@ -196,22 +196,17 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state.allJobs, 'ALL JOBS IN APP.JS')
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
-      {
-        this.state.errorMsg
-        ?
-        <p>{this.state.errorMsg}</p>
-        :
-        null
-      }
 
         <div className='MainContainer'>
 
           <div className="mapContainer">
 
            {this.state.loaded ? <Maps
+              jobs={this.state.allJobs}
               userLocation={this.state.userLocation}
               containerElement={<div style={{ height: `80vh` }} />}
               mapElement={<div style={{ height: `100%` }} />}
@@ -230,11 +225,12 @@ class App extends Component {
               <Route 
                 exact path='/login' 
                 render={() => <Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
+
               />
-              <Route exact path='/register' 
+              <Route exact path='/register'
                 render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn} registerFail={this.state.registerFail}/>}
               />
-              <Route exact path='/account' 
+              <Route exact path='/account'
                 render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs} loggedIn={this.state.loggedIn}/>}
               />
               <Route exact path='/addgrind'
