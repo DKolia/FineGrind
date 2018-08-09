@@ -126,12 +126,15 @@ class App extends Component {
       this.getUserLocation().then(data => {
         const dataLocation = {data: {lat: data.lat, lng: data.lng}}
         if(jobs.loggedIn === true) {
+          console.log(jobs, 'this is all the data')
           this.setState({
             allJobs: jobs.data,
             filteredJobs: jobs.data,
             userLocation: dataLocation,
             loaded: true, 
-            loggedIn: true
+            loggedIn: true,
+            username: jobs.username,
+            userID: jobs.userID
           })
         } else {
           this.setState({
