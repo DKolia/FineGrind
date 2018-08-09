@@ -25,7 +25,9 @@ class App extends Component {
       createAccountView: false,
       viewAccountView: false,
       filterView: true,
-      errorMsg: ''
+      errorMsg: '',
+      userLocation: {},
+      loaded: false
     }
   }
   //used to get color of all subsequent methods correct
@@ -119,14 +121,31 @@ class App extends Component {
 
   componentDidMount() {
     //this is where you want to fetch data when you want to it exist at thes beginning of your app
+    // console.log(userLocation, 'this is user location object')
     this.getJobs().then((jobs) => {
-      this.setState({
-        allJobs: jobs.data,
-        filteredJobs: jobs.data
+      this.getUserLocation().then(data => {
+        const dataLocation = {data: {lat: data.lat, lng: data.lng}}
+        this.setState({
+          allJobs: jobs.data,
+          filteredJobs: jobs.data,
+          userLocation: dataLocation,
+          loaded: true
+        })
       })
     }).catch((err) => {
       console.log(err, 'error with componenent did mount')
     })
+  }
+
+  getUserLocation = async () => {
+    const userLocationObject = await fetch('http://www.geoplugin.net/json.gp')
+    const userLocationObjectJSON = await userLocationObject.json()
+    // console.log(userLocationObjectJSON)
+    const locationObject = {
+      lng: parseFloat(userLocationObjectJSON.geoplugin_longitude),
+      lat: parseFloat(userLocationObjectJSON.geoplugin_latitude)
+    }
+    return locationObject
   }
 
   updateUserInfo = (userInfo) => {
@@ -155,7 +174,6 @@ class App extends Component {
 
   //used to add new job to local dataset if user creates a new job posting
   updateJobs = (job) => {
-    console.log(job)
     const jobsArray = this.state.allJobs;
     jobsArray.push(job)
     this.setState({
@@ -166,6 +184,8 @@ class App extends Component {
 
   render() {
     console.log(this.state.allJobs, 'THIS IS ALL JOBS')
+    console.log(this.state.userLocation, 'LONG AND LAT')
+    this.state.loaded ? console.log(typeof Object.keys(this.state.userLocation.data)[0]) : null
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
@@ -181,11 +201,12 @@ class App extends Component {
 
           <div className="mapContainer">
 
-            <Maps
+           {this.state.loaded ? <Maps
+              userLocation={this.state.userLocation}
               containerElement={<div style={{ height: `80vh` }} />}
               mapElement={<div style={{ height: `100%` }} />}
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg&callback=initMap" loadingElement={<div style={{ height: `100%` }} />}
-            />
+            /> : null}
 
           </div>
 

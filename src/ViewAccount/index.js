@@ -94,8 +94,6 @@ class ViewAccount extends Component {
 
 
 	render() {
-		console.log(this.props.allJobs, 'all jobs in view account')
-		console.log(this.props.userID, 'userid in view account')
 		if(this.props.loggedIn) {
 			return (
 				<div>
@@ -119,7 +117,7 @@ class ViewAccount extends Component {
 					<div>
 						{this.props.allJobs.map((userJob, i) => {
 							if(userJob.ownerID === this.props.userID) {
-								return <JobListing key={i} job={userJob}/> 
+								return <JobListing key={i} owner='true' job={userJob}/> 
 							} 
 							return null
 						})}

@@ -4,12 +4,12 @@ import React from "react"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const Maps = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap
-    defaultZoom={9}
-    defaultCenter={{ lat: 41.8, lng: -88 }}
-  >
-  </GoogleMap>
-))
+  		<GoogleMap
+    		defaultZoom={9}
+    		defaultCenter={props.userLocation.data}
+  		>
+  		</GoogleMap>
 
+))
 
 export default Maps;

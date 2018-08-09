@@ -69,6 +69,10 @@ class Filter extends Component {
 
   	}
 
+    componentDidMount(){
+      this.categoryFilter();
+    }
+
   	render() {
       console.log(this.state.filteredList, 'this is the filtered list')
   		return (
