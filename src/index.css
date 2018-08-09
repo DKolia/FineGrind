@@ -34,6 +34,15 @@ h1 {
 
 }
 
+.jobCard {
+  border: 1px solid red;
+}
+
+.jobCards {
+  overflow: scroll;
+  height: 35vh;
+}
+
 footer {
   width: 100vw;
   height: 9vh;

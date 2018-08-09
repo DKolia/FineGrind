@@ -76,11 +76,15 @@ class Filter extends Component {
   	render() {
       console.log(this.state.filteredList, 'this is the filtered list')
   		return (
-  			<div className='filter'>
-  				<PayFilter payFilter={this.state.payFilter} />
-  				<LocationFilter locationFilter={this.state.locationFilter} />
-  				<CategoryFilter categoryFilter={this.state.categoryFilter} />
-          {this.state.filteredList.map(job => <JobList job={job}/>)}
+  			<div className='filterSideBar'>
+          <div className='filter'>
+  				  <PayFilter payFilter={this.state.payFilter} />
+  				  <LocationFilter locationFilter={this.state.locationFilter} />
+  				  <CategoryFilter categoryFilter={this.state.categoryFilter} />
+          </div>
+          <div className='jobCards'>
+            {this.state.filteredList.map(job => <JobList job={job}/>)}
+          </div>
   				
   			</div>
   		)
