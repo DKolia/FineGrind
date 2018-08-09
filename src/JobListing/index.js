@@ -7,7 +7,7 @@ const JobListing = (props) => {
 	return (
 		<div className='jobCard'>
 			<h3>{props.job.title}</h3>
-			<h4>${props.job.pay}</h4>
+			<h4>${props.job.pay}/hr</h4>
 			<h4>{props.job.category}</h4>
 			{props.owner ? <button>Delete Job Posting</button> : null}
 		</div>

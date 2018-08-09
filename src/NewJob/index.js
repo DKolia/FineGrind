@@ -50,7 +50,6 @@ class NewJob extends Component {
 			//send the form data to the server to create new job posting
 			const jobs = await fetch(grindData);
 			const jobsJSON = await jobs.json();
-			console.log(jobsJSON.results["0"].geometry.location);
 			this.setState({location: jobsJSON.results["0"].geometry.location});
 
 			const newJob = await fetch('http://localhost:5000/api/v1/jobs', {
@@ -64,11 +63,9 @@ class NewJob extends Component {
 
 			//convert the response from json
 			const newJobJSON = await newJob.json();
-			console.log(newJobJSON);
 			//if the server accepted the new job, add the job to the app.js state
 			if(newJobJSON.status === 200) {
 				this.props.updateJobs(newJobJSON.data)
-				console.log("newJobJSON is working");
 				this.setState({
 					submitted: true
 				})
