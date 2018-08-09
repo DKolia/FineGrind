@@ -18,6 +18,7 @@ class LocationFilter extends Component {
   		this.setState({
   			location: e.target.value
   		})
+  		this.props.updateLocationFilter(e.target.value)
   	}
 
 	render() {

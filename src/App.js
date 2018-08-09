@@ -20,12 +20,6 @@ class App extends Component {
       loggedIn: false,
       loginFail: false,
       registerFail: false,
-      createJobView: false,
-      loginView: false,
-      createAccountView: false,
-      viewAccountView: false,
-      filterView: true,
-      errorMsg: '',
       userLocation: {},
       loaded: false
     }
@@ -218,7 +212,7 @@ class App extends Component {
             <Switch>
 
               <Route exact path='/' 
-                render={() => <FilterContainer allJobs={this.state.allJobs}/>}
+                render={() => <FilterContainer userLocation={this.state.userLocation} allJobs={this.state.allJobs}/>}
               />
               <Route 
                 exact path='/login' 
