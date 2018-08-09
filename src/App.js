@@ -165,7 +165,8 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.allJobs);
+    console.log("render is being called in App.js, this.state=", this.state)
+    // console.log(this.state.allJobs[26]);
     return (
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
@@ -185,6 +186,7 @@ class App extends Component {
               containerElement={<div style={{ height: `80vh` }} />}
               mapElement={<div style={{ height: `100%` }} />}
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg&callback=initMap" loadingElement={<div style={{ height: `100%` }} />}
+              jobs={this.state.allJobs}
             />
 
           </div>

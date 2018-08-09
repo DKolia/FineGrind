@@ -3,13 +3,29 @@ import React from "react"
 // eslint-disable-next-line
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const Maps = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap
-    defaultZoom={9}
-    defaultCenter={{ lat: 41.8, lng: -88 }}
-  >
-  </GoogleMap>
-))
+const MyMap = (props) => {
+  console.log(props.jobs, "this is props.jobs in the maps jcompo")
+
+  const markers = props.jobs.map(job=>{
+    return(
+      <Marker
+        position={{
+          lat: job.location.lat,
+          lng: job.location.lng
+        }}
+     />
+    )
+  })
+
+  return(
+    <GoogleMap
+      defaultZoom={9}
+      defaultCenter={{ lat: 41.8, lng: -88 }}
+    >
+      {markers}
+    </GoogleMap>
+  )
+}
 
 
-export default Maps;
+export default withScriptjs(withGoogleMap(MyMap));

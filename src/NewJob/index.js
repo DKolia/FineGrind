@@ -38,18 +38,7 @@ class NewJob extends Component {
 // Fetch request to Google API using the same URL we just created
 // Set variable equal to fetch
 // Extract Long/Lat Object
-
-		// // remove spaces from street, replace with +
-		// this.state.street.replace(/ /g, "+")
-		// city.replace(/ /g, "+")
-		// // concat street, city, state, country variables,
-		// searchString = this.state.street + this.state.city + this.state.state + this.state.country
-
-		// save that to a varaible
-
-
-
-		// send variable to api
+// send variable to api
 
 
 		//add the user's id to the body
@@ -75,15 +64,17 @@ class NewJob extends Component {
 
 			//convert the response from json
 			const newJobJSON = await newJob.json();
-
+			console.log(newJobJSON);
 			//if the server accepted the new job, add the job to the app.js state
 			if(newJobJSON.status === 200) {
 				this.props.updateJobs(newJobJSON.data)
+				console.log("newJobJSON is working");
 				this.setState({
 					submitted: true
 				})
 			} else {
 				console.log("Error with adding new job")
+
 			}
 
 		} catch (err) {
