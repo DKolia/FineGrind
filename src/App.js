@@ -193,7 +193,9 @@ class App extends Component {
 
             <Switch>
 
-              <Route exact path='/' component={ FilterContainer }/>
+              <Route exact path='/' 
+                render={() => <FilterContainer allJobs={this.state.allJobs}/>}
+              />
               <Route 
                 exact path='/login' 
                 render={()=><Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
