@@ -113,52 +113,59 @@ class FilterContainer extends Component {
       console.log(this.state.categoryFilter, '\nthis is the category filter');
       console.log(this.state.locationFilter, '\nthis is the location filter')
       // console.log(this.state.filteredList, 'this is the filtered list')
-      const jobs = this.props.allJobs.map((j, i)=>{
+      const payFilteredJobs = this.props.allJobs.filter((j, i)=>{
         if(this.state.payFilter.length !== 0){
           for(let i = 0; i < this.state.payFilter.length; i++) {
             
             if(this.state.payFilter[i] === '$0/hr to $15/hr' && j.pay < 15 && j.pay >= 0) {
-              return <JobListing job={j} />
+              return j
             }
 
             else if(this.state.payFilter[i] === '$15/hr to $30/hr' && j.pay < 30 && j.pay >= 15) {
-              return <JobListing job={j} />
+              return j
             }
 
             else if(this.state.payFilter[i] === '$30/hr to $45/hr' && j.pay < 45 && j.pay >= 30) {
-              return <JobListing job={j} />
+              return j
             }
 
             else if(this.state.payFilter[i] === '$45/hr to $60/hr' && j.pay < 60 && j.pay >= 45) {
-              return <JobListing job={j} />
+              return j
             }
 
             else if(this.state.payFilter[i] === '$45/hr to $60/hr' && j.pay < 60 && j.pay >= 45) {
-              return <JobListing job={j} />
+              return j
             }
             else if(this.state.payFilter[i] === '$60/hr' && j.pay >= 60) {
-              return <JobListing job={j} />
+              return j
             }
           }  //FOR LOOP
         } else {
-          return <JobListing job={j} />
+          return j
         }
         
-      }).map((j, i) => {
-        if(this.state.categoryFilter.length !== 0) {
+      })
 
+      console.log(payFilteredJobs);
+      const categoryFilteredJobs = payFilteredJobs.map((j, i) => {
+        if(this.state.categoryFilter.length !== 0) {
+          for(let i = 0; i < this.state.categoryFilter.length; i++) {
+
+            if(this.state.categoryFilter[i] === j.category){
+              return <JobListing job={j} />
+            }
+          }
         } else {
-          
+          return <JobListing job={j} />
         }
 
-
-
-
-
-
-
       })
-      // .filter(() => {
+
+      const finalList = categoryFilteredJobs.filter(j => j != undefined)
+      console.log(finalList)
+
+
+      // .filter(() => {  
       //   // filter category
       // }).filter(() => {
       //   // filter location
@@ -171,9 +178,9 @@ class FilterContainer extends Component {
   				  <CategoryFilter categoryFilter={this.state.categoryFilter} updateCategoryFilter={this.updateCategoryFilter} />
           </div><hr/>
           <div className='jobCards'>
-            {jobs}
+            {finalList}
           </div>
-  				
+  			 
   			</div>
   		)
   	}
