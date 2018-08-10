@@ -34,7 +34,7 @@ class Login extends Component {
     } else {
       return (
         <div>
-          <a onClick={this.exit}><img alt='X' class="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
+          <a onClick={this.exit}><img alt='X' className="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
           <h1>Please Login to post a FineGrind</h1>
           <p>Login below to begin posting a FineGrind opportunity. If you don't have an account yet, please click <a href="/register">here</a> to create one for free.</p>
           <form onSubmit={this.handleSubmit}>

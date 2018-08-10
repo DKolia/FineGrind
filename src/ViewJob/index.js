@@ -28,7 +28,7 @@ class ViewJob extends Component {
 		} else {
 			return(
 				<div>
-					<a onClick={this.exit}><img alt='X' class="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
+					<a onClick={this.exit}><img alt='X' className="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
 					<div>
 						<h3>Job: {this.props.job[0].title}</h3>
 						<h3>Type of Work: {this.props.job[0].category}</h3>

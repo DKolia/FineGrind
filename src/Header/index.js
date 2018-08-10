@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
 
       <header>
-        <img alt='' class="svg svgSize1" src="/Images/fg_logo.svg"></img>
+        <img alt='' className="svg svgSize1" src="/Images/fg_logo.svg"></img>
             {
               (props.loggedIn === false)
               ?

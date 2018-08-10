@@ -94,7 +94,7 @@ class NewJob extends Component {
 			return (
 				<div>
 					{this.state.submitted ? <Redirect to={'/'} /> : null }
-					<a href='/'><img alt='X' class="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
+					<a href='/'><img alt='X' className="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
 					<form onSubmit={this.handleSubmit}>
 						<small>Job Title</small><br/>
 						<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>

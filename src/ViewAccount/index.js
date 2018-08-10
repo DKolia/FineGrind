@@ -108,7 +108,7 @@ class ViewAccount extends Component {
 			return (
 				<div>
 					{this.state.submitted ? <Redirect to={'/'} /> : null}
-					<a onClick={this.exit}><img alt='X' class="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
+					<a onClick={this.exit}><img alt='X' className="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
 					<form onSubmit={this.handleSubmit}>
 						<small>Email:</small> <br/>
 						<input type='email' name='username' value={this.state.username} onChange={this.handleChange} /><br/>

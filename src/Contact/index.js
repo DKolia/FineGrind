@@ -9,14 +9,14 @@ function Contact () {
           <div>
             <p>fineGrind is built using the latest web technologies by Badal Moradia and David Kolia in Chicago. We would be happy to answer any questions and you can view our LinkedIn profiles below. We'd be happy to answer any qestions.</p>
             <a href="https://www.linkedin.com/in/davidkolia/">
-              <img class="svg svgSize3" src="../Images/profile.svg"></img>
+              <img className="svg svgSize3" src="../Images/profile.svg"></img>
               <p>David Kolia</p>
             </a>
           </div>
 
           <div>
             <a href="https://www.linkedin.com/in/badal-moradia/">
-              <img class="svg svgSize3" src="../Images/profile.svg"></img>
+              <img className="svg svgSize3" src="../Images/profile.svg"></img>
               <p>Badal Moradia</p>
             </a>
           </div>

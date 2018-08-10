@@ -37,7 +37,7 @@ class CreateAccount extends Component {
     } else{
       return (
         <div>
-          <a onClick={this.exit}><img alt='X' class="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
+          <a onClick={this.exit}><img alt='X' className="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
           <h1>Begin posting FindGrind jobs.</h1>
           <p>By signing up for our free service, you will be able to post jobs in your area. Please fill out the below to begin.</p>
           <p>Please enter your email address, a unique password, and confirm the password.</p>
