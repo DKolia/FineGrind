@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
-const apiURL = 'https://boiling-brook-79123.herokuapp.com'
+const apiURL = 'http://boiling-brook-79123.herokuapp.com'
 // const apiURL = 'http://localhost:5000'
 
 
