@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: roboto, sans-serif;
   display: flex;
   align-items: flex-start;
   flex-flow: column;
@@ -12,10 +12,18 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;}
+  justify-content: flex-end;
+  background-color: #3F5765;
+}
+
+a {
+  color: #FF530D;
+}
+
+
 
 .mapContainer {
-  width: 66vw;
+  width: 62vw;
   height: 50%;
 }
 
@@ -23,33 +31,57 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  padding: 0 0 0 70px;
 }
 
 .sidebar {
-  max-width: 34vw;
+  width: 34vw;
+  padding: 30px 30px 30px 30px;
 }
 
 
 .jobCard {
-  border: 1px solid red;
+  border: 1px solid #EFEFEF;
+  margin-bottom: 10px;
+  color: #EFEFEF;
 }
 
 .jobCards {
   overflow: scroll;
-  height: 35vh;
-  border: 1px solid black;
+  height: 45vh;
+  color: #BDD4DE;
 }
 
 footer {
   width: 100vw;
-  height: 8vh;
-  background-color: gray;
-  color: yellow;
+  height: 10vh;
+  background-color: #2B3A42;
+  color: #EFEFEF;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
+
+
+.copyright {
+  width: 600px;
+  margin-left: 40px;
+  margin-top: 0px;
+}
+
+
+.footerLinks{
+  text-align: right;
+  width: 100%;
+}
+.footerLinks p {
+  display: inline;
+  margin-right: 40px;
+}
+footer p {
+  font-size: 1.4em;
+  font-weight: 200;
+}
+
+
 
 h4, h3 {
   margin: 5px ;
@@ -57,5 +89,34 @@ h4, h3 {
 
 header{
   display: flex;
-  justify-content: space-around;
+  width: 100vw;
+  height: 10vh;
+  background-color: #2B3A42;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links a {
+  font-size: 1.4em;
+  font-weight: 100;
+  margin-right: 40px;
+}
+
+.svg {
+  filter: invert(100%);
+}
+
+.svgSize1 {
+  height: 14vh;
+  margin-left: 3vw;
+  margin-top: 1vh;
+}
+
+.svgSize2 {
+  height: 7vh;
+  margin-left: 3vw;
+}
+
+.svgSize3 {
+  width: 50px;
 }

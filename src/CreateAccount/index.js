@@ -20,8 +20,6 @@ class CreateAccount extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.login(this.state.email);
-
     // call the register function that was passed in as props
     this.props.register(this.state);
   }
@@ -39,7 +37,7 @@ class CreateAccount extends Component {
     } else{
       return (
         <div>
-          <a onClick={this.exit}><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+          <a onClick={this.exit}><img alt='X' class="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
           <h1>Begin posting FindGrind jobs.</h1>
           <p>By signing up for our free service, you will be able to post jobs in your area. Please fill out the below to begin.</p>
           <p>Please enter your email address, a unique password, and confirm the password.</p>

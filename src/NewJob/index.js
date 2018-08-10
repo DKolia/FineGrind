@@ -35,9 +35,7 @@ class NewJob extends Component {
 		const grinder = this.state.street.replace(/ /g, "+") + ",+" + this.state.city + ",+" + this.state.state;
 		const grindData = "https://maps.googleapis.com/maps/api/geocode/json?address=" + grinder + "&key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg"
 
-// Fetch request to Google API using the same URL we just created
-// Set variable equal to fetch
-// Extract Long/Lat Object
+
 // send variable to api
 
 
@@ -90,25 +88,18 @@ class NewJob extends Component {
 		})
 	}
 
-	exit = (e) => {
-		this.setState({
-			submitted: true
-		})
-	}
-
 	render() {
 
 		if(this.props.loggedIn){
 			return (
 				<div>
 					{this.state.submitted ? <Redirect to={'/'} /> : null }
-					<a onClick={this.exit}><img alt='X' src="../Images/times-circle-regular.svg"></img></a>
+					<a href='/'><img alt='X' class="svg svgSize3" src="../Images/times-circle-regular.svg"></img></a>
 					<form onSubmit={this.handleSubmit}>
 						<small>Job Title</small><br/>
 						<input type='text' placeholder='Title of Job' name='title' value={this.state.title} onChange={this.handleChange} /><br/>
 						<small>Type of Work</small><br/>
 						<select type='text' placeholder='Categories' name='category' onChange={this.handleChange}>
-							<option disabled selected>Please Pick A Category</option>
 							<option value='Automotive'>Automotive</option>
 							<option value='Bartending'>Bartending</option>
 							<option value='Catering'>Catering</option>
