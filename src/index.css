@@ -28,7 +28,7 @@ a {
 }
 
 .filter {
-  height: 35vh;
+  height: 30vh;
   overflow: scroll;
 
 }
@@ -53,7 +53,7 @@ a {
 
 .jobCards {
   overflow: scroll;
-  height: 45vh;
+  height: 40vh;
   color: #BDD4DE;
 }
 
