@@ -6,11 +6,11 @@ function Footer() {
 
       <img alt='' className="svg svgSize2" src="/Images/fg_sq_logo.svg"></img>
 
-      <div class="copyright">
+      <div className="copyright">
         <p>Copyright 2018</p>
       </div>
 
-      <div class="footerLinks">
+      <div className="footerLinks">
         <p><a href="https://github.com/DKolia/FineGrind">GitHub</a></p>
         <p><a href="/about">About</a></p>
         <p><a href="/contact">Contact</a></p>

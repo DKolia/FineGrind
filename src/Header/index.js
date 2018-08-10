@@ -9,12 +9,12 @@ const Header = (props) => {
             {
               (props.loggedIn === false)
               ?
-              <div class="links">
+              <div className="links">
                 <Link to="/register" >Create Account</Link>
                 <Link to="/login" >Login</Link>
               </div>
               :
-              <div class="links">
+              <div className="links">
                 <Link to="/account" >Account</Link>
                 <Link to="/addgrind" >New Grind</Link>
               </div>
