@@ -159,7 +159,7 @@ class App extends Component {
   }
 
   getUserLocation = async () => {
-    const userLocationObject = await fetch('https://www.geoplugin.net/json.gp')
+    const userLocationObject = await fetch('http://www.geoplugin.net/json.gp')
     const userLocationObjectJSON = await userLocationObject.json()
     // console.log(userLocationObjectJSON)
     const locationObject = {
