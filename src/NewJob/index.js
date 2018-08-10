@@ -64,6 +64,7 @@ class NewJob extends Component {
 
 			//convert the response from json
 			const newJobJSON = await newJob.json();
+			console.log(newJobJSON, 'this is the new job response from the server');
 			//if the server accepted the new job, add the job to the app.js state
 			if(newJobJSON.status === 200) {
 				this.props.updateJobs(newJobJSON.data)
