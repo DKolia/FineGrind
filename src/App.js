@@ -161,7 +161,7 @@ class App extends Component {
   getUserLocation = async () => {
     const userIP = await fetch('https://api.ipify.org/?format=json');
     const userIPJson = await userIP.json();
-    const userLocationObject = await fetch(`https://ipapi.co/${userIPJson}/json/`)
+    const userLocationObject = await fetch(`https://ipapi.co/${userIPJson.ip}/json/`)
     const userLocationObjectJSON = await userLocationObject.json()
     // console.log(userLocationObjectJSON)
     const locationObject = {
