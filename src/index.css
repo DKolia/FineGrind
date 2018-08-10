@@ -23,12 +23,12 @@ a {
 
 
 .mapContainer {
-  width: 62vw;
+  width: 60vw;
   height: 50%;
 }
 
 .filter {
-  height: 35vh;
+  height: 30vh;
   overflow: scroll;
 
 }
@@ -41,7 +41,7 @@ a {
 
 .sidebar {
   width: 34vw;
-  padding: 30px 30px 30px 30px;
+  padding: 30px 30px 15px 30px;
 }
 
 
@@ -53,13 +53,13 @@ a {
 
 .jobCards {
   overflow: scroll;
-  height: 45vh;
+  height: 40vh;
   color: #BDD4DE;
 }
 
 footer {
   width: 100vw;
-  height: 10vh;
+  height: 11vh;
   background-color: #2B3A42;
   color: #EFEFEF;
   display: flex;
