@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import JobListing from '../JobListing';
 import { Redirect } from 'react-router-dom'
 
+const apiURL = 'https://boiling-brook-79123.herokuapp.com'
+// const apiURL = 'http://localhost:5000'
+
 
 
 class ViewAccount extends Component {
@@ -35,7 +38,7 @@ class ViewAccount extends Component {
   				password: this.state.pass1
   			})
 	  		try{
-	  			const updatedUser = await fetch(`http://localhost:5000/api/v1/users/${this.props.userID}`, {
+	  			const updatedUser = await fetch(`${apiURL}/api/v1/users/${this.props.userID}`, {
 	  				method: 'PUT',
 	  				credentials: 'include',
 					body: JSON.stringify(this.state),
@@ -71,7 +74,7 @@ class ViewAccount extends Component {
   	handleDelete = async (e) => {
   		e.preventDefault()
   		try{
-  			const deletedUser = await fetch(`http://localhost:5000/api/v1/users/${this.props.userID}`, {
+  			const deletedUser = await fetch(`${apiURL}/api/v1/users/${this.props.userID}`, {
   				method: 'DELETE',
 	  			credentials: 'include',
 				body: JSON.stringify(this.state),

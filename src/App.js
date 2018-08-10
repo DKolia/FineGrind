@@ -11,6 +11,10 @@ import ViewJob from './ViewJob'
 import { withRouter, Route, Switch } from 'react-router-dom';
 
 
+const apiURL = 'https://boiling-brook-79123.herokuapp.com'
+// const apiURL = 'http://localhost:5000'
+
+
 class App extends Component {
   constructor(){
     super();
@@ -39,7 +43,7 @@ class App extends Component {
     }
 
   try {
-    const foundUserData = await fetch("http://localhost:5000/api/v1/users/login", {
+    const foundUserData = await fetch(apiURL + "/api/v1/users/login", {
       method: "POST",
       credentials: 'include',
       body: JSON.stringify(loggedUser),
@@ -91,7 +95,7 @@ class App extends Component {
       }
 
       try {
-        const registerData = await fetch("http://localhost:5000/api/v1/users/register", {
+        const registerData = await fetch(apiURL + "/api/v1/users/register", {
           method: "POST",
           credentials: 'include',
           body: JSON.stringify(userPass), // object that was in state in CreateAccount
@@ -174,7 +178,7 @@ class App extends Component {
   getJobs = async () => {
     try {
       //make fetch request to server to get all jobs data
-      const jobs = await fetch('http://localhost:5000/api/v1/jobs', {
+      const jobs = await fetch(apiURL + "/api/v1/jobs", {
         credentials: 'include'
       })
       //convert response from json

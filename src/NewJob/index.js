@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
+const apiURL = 'https://boiling-brook-79123.herokuapp.com'
+// const apiURL = 'http://localhost:5000'
+
 
 class NewJob extends Component {
 	constructor() {
@@ -50,7 +53,7 @@ class NewJob extends Component {
 			const jobsJSON = await jobs.json();
 			this.setState({location: jobsJSON.results["0"].geometry.location});
 
-			const newJob = await fetch('http://localhost:5000/api/v1/jobs', {
+			const newJob = await fetch(apiURL + "/api/v1/jobs", {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),
