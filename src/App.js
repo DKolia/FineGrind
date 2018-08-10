@@ -159,12 +159,13 @@ class App extends Component {
   }
 
   getUserLocation = async () => {
-    const userLocationObject = await fetch('http://www.geoplugin.net/json.gp')
+    const userIP = await fetch('https://api.ipify.org/?format=json');
+    const userLocationObject = await fetch(`http://api.ipstack.com/${userIP.ip}?access_key=cb22f2e82634cc7e48a3d45531b29cbe`)
     const userLocationObjectJSON = await userLocationObject.json()
     // console.log(userLocationObjectJSON)
     const locationObject = {
-      lng: parseFloat(userLocationObjectJSON.geoplugin_longitude),
-      lat: parseFloat(userLocationObjectJSON.geoplugin_latitude)
+      lng: parseFloat(userLocationObjectJSON.longitude),
+      lat: parseFloat(userLocationObjectJSON.latitude)
     }
     return locationObject
   }

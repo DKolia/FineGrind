@@ -5,6 +5,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 
 
 const MyMap = (props) => {
+  console.log("hey! MyMap!")
   const markers = props.jobs.map((job, i)=>{
     return(
       <Marker key={i}
