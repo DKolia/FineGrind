@@ -1,17 +1,33 @@
-import React from 'react';
+import React , { Component }from 'react';
 
 
-const JobListing = (props) => {
-	// console.log(props, 'this is the propslist')
+class JobListing extends Component {
+	constructor() {
+		super();
+		this.state = {
+
+		}
+	}
+	//used to get color of all subsequent methods correct
+	placeholderFunction = () => {
+
+	}
+
+	handleClick = (e) => {
+		this.props.viewJobPage(e.target)
+	}
+
 	//Link each card with a different route that is the show page for the job or show a modal that has all the info
-	return (
-		<div className='jobCard'>
-			<h3>{props.job.title}</h3>
-			<h4>${props.job.pay}/hr</h4>
-			<h4>{props.job.category}</h4>
-			{props.owner ? <button>Delete Job Posting</button> : null}
-		</div>
-	)
+	render() {
+		return (
+			<div className='jobCard' id={this.props.job._id} onClick={this.handleClick}>
+				<h3>{this.props.job.title}</h3>
+				<h4>${this.props.job.pay}/hr</h4>
+				<h4>{this.props.job.category}</h4>
+				{this.props.owner ? <button>Delete Job Posting</button> : null}
+			</div>
+		)
+	}
 }
 
 

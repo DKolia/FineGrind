@@ -46,6 +46,3 @@ class LocationFilter extends Component {
 }
 
 export default LocationFilter;
-
-
-//{(this.state.location==='') ? default : null}

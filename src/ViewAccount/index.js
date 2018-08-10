@@ -124,7 +124,7 @@ class ViewAccount extends Component {
 					<div className='jobCards'>
 						{this.props.allJobs.map((userJob, i) => {
 							if(userJob.ownerID === this.props.userID) {
-								return <JobListing key={i} owner='true' job={userJob}/> 
+								return <JobListing key={i} viewJobPage={this.props.viewJobPage} owner='true' job={userJob}/> 
 							} 
 							return null
 						})}

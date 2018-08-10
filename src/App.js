@@ -7,7 +7,8 @@ import Header from "./Header";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
 import FilterContainer from './FilterContainer'
-import { Route, Switch } from 'react-router-dom';
+import ViewJob from './ViewJob'
+import { withRouter, Route, Switch } from 'react-router-dom';
 
 
 class App extends Component {
@@ -21,7 +22,8 @@ class App extends Component {
       loginFail: false,
       registerFail: false,
       userLocation: {},
-      loaded: false
+      loaded: false,
+      viewJob: ''
     }
   }
   //used to get color of all subsequent methods correct
@@ -64,6 +66,15 @@ class App extends Component {
     } catch (err){
       console.error(err, ' error with login in App.js')
     }
+  }
+
+  viewJobPage = (job) => {
+    const jobList = this.state.allJobs.filter(j => job.id === j._id)
+    this.setState({
+      viewJob: jobList
+    })
+    this.props.history.push('./job')
+    //this.props.history.push('/job');
   }
 
 
@@ -212,18 +223,24 @@ class App extends Component {
             <Switch>
 
               <Route exact path='/' 
-                render={() => <FilterContainer userLocation={this.state.userLocation} allJobs={this.state.allJobs}/>}
+                render={() => <FilterContainer userLocation={this.state.userLocation} allJobs={this.state.allJobs} viewJobPage={this.viewJobPage}/>}
               />
               <Route 
                 exact path='/login' 
                 render={() => <Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
 
               />
+
+              <Route 
+                exact path='/job' 
+                render={() => <ViewJob job={this.state.viewJob}/>}
+
+              />
               <Route exact path='/register'
                 render={() => <CreateAccount register={this.register} loggedIn={this.state.loggedIn} registerFail={this.state.registerFail}/>}
               />
               <Route exact path='/account'
-                render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs} loggedIn={this.state.loggedIn}/>}
+                render={() => <ViewAccount userID={this.state.userID} updateUserInfo={this.updateUserInfo} username={this.state.username} allJobs={this.state.allJobs} loggedIn={this.state.loggedIn} viewJobPage={this.viewJobPage}/>}
               />
               <Route exact path='/addgrind'
                 render={() => <NewJob updateJobs={this.updateJobs} userID={this.state.userID} loggedIn={this.state.loggedIn} />}
@@ -242,4 +259,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
