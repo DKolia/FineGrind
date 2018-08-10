@@ -5,18 +5,16 @@ const Header = (props) => {
   return (
 
       <header>
-        <img alt='X' src="Images/bullhorn-solid.svg"></img>
-        <h1>FineGrind</h1>
-
+        <img alt='' class="svg svgSize1" src="/Images/fg_logo.svg"></img>
             {
               (props.loggedIn === false)
               ?
-              <div>
+              <div class="links">
                 <Link to="/register" >Create Account</Link>
                 <Link to="/login" >Login</Link>
               </div>
               :
-              <div>
+              <div class="links">
                 <Link to="/account" >Account</Link>
                 <Link to="/addgrind" >New Grind</Link>
               </div>

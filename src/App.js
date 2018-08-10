@@ -135,7 +135,7 @@ class App extends Component {
             allJobs: jobs.data,
             filteredJobs: jobs.data,
             userLocation: dataLocation,
-            loaded: true, 
+            loaded: true,
             loggedIn: true,
             username: jobs.username,
             userID: jobs.userID
@@ -225,8 +225,8 @@ class App extends Component {
               <Route exact path='/' 
                 render={() => <FilterContainer userLocation={this.state.userLocation} allJobs={this.state.allJobs} viewJobPage={this.viewJobPage}/>}
               />
-              <Route 
-                exact path='/login' 
+              <Route
+                exact path='/login'
                 render={() => <Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
 
               />
