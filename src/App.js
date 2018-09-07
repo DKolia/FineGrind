@@ -8,6 +8,7 @@ import Login from "./Login";
 import CreateAccount from "./CreateAccount";
 import FilterContainer from './FilterContainer'
 import ViewJob from './ViewJob'
+import LoadingPage from './LoadingPage'
 import { withRouter, Route, Switch } from 'react-router-dom';
 
 
@@ -210,17 +211,17 @@ class App extends Component {
       <div className="app">
         <Header loggedIn={this.state.loggedIn}/>
 
-        <div className='MainContainer'>
+        {this.state.loaded ? <div className='MainContainer'>
 
           <div className="mapContainer">
 
-           {this.state.loaded ? <Maps
+           <Maps
               jobs={this.state.allJobs}
               userLocation={this.state.userLocation}
               containerElement={<div style={{ height: `80vh` }} />}
               mapElement={<div style={{ height: `100%` }} />}
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg&callback=initMap" loadingElement={<div style={{ height: `100%` }} />}
-            /> : null}
+            />
 
           </div>
 
@@ -256,7 +257,7 @@ class App extends Component {
 
           </div>
 
-        </div>
+        </div> : <LoadingPage />}
 
         <Footer />
 

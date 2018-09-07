@@ -54,7 +54,7 @@ class CategoryFilter extends Component {
 						<option value='Gardening'>Gardening</option>
 						<option value='Housekeeping'>Housekeeping</option>
 						<option value='Pet Services'>Pet Services</option>
-						<option value='Photography'>Photography</option>
+						<option value='Photography'>Photography</option>o
 						<option value='Plumbing'>Plumbing</option>
 						<option value='Security'>Security</option>
 						<option value='Serving'>Serving</option>
