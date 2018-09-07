@@ -62,7 +62,7 @@ class CategoryFilter extends Component {
 						<option value='Yard Work'>Yard Work</option>
 					</select><br/>
 				</form>
-				{this.state.categories.map(category => <small className='filter-choice' id={category} onClick={this.handleClick}>{category}</small>)}
+				{this.state.categories.map(category => <small className='filter-choice' id={category} onClick={this.handleClick}>{category}&nbsp;&nbsp;</small>)}
 			</div>
 		)
 	}
