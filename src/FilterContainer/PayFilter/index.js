@@ -53,7 +53,7 @@ class PayFilter extends Component {
 						<option value='> $60/hr'>&gt;$60/hr</option>
 					</select>
 				</form>
-				{this.state.pay.map((pay, i) => <h4 id={pay} onClick={this.handleClick} key={i}>{pay}</h4>)}
+				{this.state.pay.map((pay, i) => <h4 className='filter-choice' id={pay} onClick={this.handleClick} key={i}>{pay}</h4>)}
 			</div>
 
 		)

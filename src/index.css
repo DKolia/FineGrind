@@ -20,6 +20,10 @@ a {
   color: #FF530D;
 }
 
+.filter-choice {
+  cursor: pointer;
+}
+
 
 .start {
   text-align: center;
@@ -53,6 +57,7 @@ a {
   border: 1px solid #EFEFEF;
   margin-bottom: 10px;
   color: #EFEFEF;
+  cursor: pointer;
 }
 
 .jobCards {
