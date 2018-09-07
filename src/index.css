@@ -25,6 +25,18 @@ a {
   color: #CD5534;
 }
 
+.splash {
+  color: white;
+}
+
+button {
+  background-color: none;
+  border-radius: none;
+  border: 1px solid #CD5534;
+  color: #CD5534;
+  padding: 2px;
+}
+
 
 .start {
   text-align: center;
