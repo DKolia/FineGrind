@@ -37,6 +37,14 @@ button {
   padding: 2px;
 }
 
+select {
+  background-color: #CD5534;
+  border-radius: none;
+  border: 2px solid white;
+  color: white;
+  padding: 5px;
+}
+
 
 .start {
   text-align: center;
