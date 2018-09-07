@@ -3,7 +3,7 @@ import React from 'react';
 function LoadingPage() {
 	return (
 		<div>
-			<h4>Please wait while heroku servers are configured</h4>
+			<h4 className='start'>Please wait while heroku servers are configured</h4>
 		</div>
 	)
 }

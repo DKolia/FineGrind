@@ -21,6 +21,10 @@ a {
 }
 
 
+.start {
+  text-align: center;
+  height: 79vh;
+}
 
 .mapContainer {
   width: 60vw;

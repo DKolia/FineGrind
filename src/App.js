@@ -74,7 +74,7 @@ class App extends Component {
   }
 
   viewJobPage = (job) => {
-    const jobList = this.state.allJobs.filter(j => job.id === j._id)
+    const jobList = this.state.allJobs.filter(j => job === j._id)
     this.setState({
       viewJob: jobList
     })

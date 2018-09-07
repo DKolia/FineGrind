@@ -1,4 +1,4 @@
-import React , { Component }from 'react';
+gitimport React , { Component }from 'react';
 
 
 class JobListing extends Component {
@@ -14,7 +14,7 @@ class JobListing extends Component {
 	}
 
 	handleClick = (e) => {
-		this.props.viewJobPage(e.target)
+		this.props.viewJobPage(e.currentTarget.id)
 	}
 
 	//Link each card with a different route that is the show page for the job or show a modal that has all the info
