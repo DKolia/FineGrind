@@ -9,7 +9,7 @@ The fast job finding app using local maps to get things done. Find yourself a gi
 ## Users
 
 
-Using fineGrind, users will be able to browse and filter locally available odd jobs and grinds. Simply click the flags you are interested in to get the user's grind listing and find out more about the opening. Register as a user yourself on our free website to offer grinds yourself.
+Using fineGrind, users will be able to browse and filter locally available odd jobs or "grinds". Simply click the flags you are interested in to get the user's grind listing and find out more about the opening. Register as a user yourself on our free website to offer grinds yourself.
 
 
 ## Made With
