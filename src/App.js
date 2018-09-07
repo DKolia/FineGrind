@@ -239,7 +239,9 @@ class App extends Component {
 
               {this.state.accepted ? <Route exact path='/' 
                 render={() => <FilterContainer userLocation={this.state.userLocation} allJobs={this.state.allJobs} viewJobPage={this.viewJobPage}/>} 
-              /> : <SplashPage /> }
+              /> : <Route exact path='/' 
+                render={() => <SplashPage enterSite={this.enterSite} />} 
+              /> }
               <Route
                 exact path='/login'
                 render={() => <Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
