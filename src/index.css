@@ -28,16 +28,16 @@ a {
 .splash {
   color: white;
 }
-
+/*
 button {
   background-color: none;
   border-radius: none;
   border: 1px solid #CD5534;
   color: #CD5534;
   padding: 2px;
-}
+}*/
 
-select {
+select, button {
   background-color: #CD5534;
   border-radius: none;
   border: 2px solid white;
