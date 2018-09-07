@@ -22,4 +22,4 @@ function SplashPage(props) {
 }
 
 
-default export SplashPage;
+export default SplashPage;
