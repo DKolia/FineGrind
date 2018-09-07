@@ -9,6 +9,7 @@ import CreateAccount from "./CreateAccount";
 import FilterContainer from './FilterContainer'
 import ViewJob from './ViewJob'
 import LoadingPage from './LoadingPage'
+import SplashPage from './SplashPage'
 import { withRouter, Route, Switch } from 'react-router-dom';
 
 
@@ -28,7 +29,8 @@ class App extends Component {
       registerFail: false,
       userLocation: {},
       loaded: false,
-      viewJob: ''
+      viewJob: '',
+      accepted: false
     }
   }
   //used to get color of all subsequent methods correct
@@ -205,6 +207,12 @@ class App extends Component {
     })
   }
 
+  enterSite = () => {
+    this.setState({
+      accepted: true
+    })
+  }
+
 
   render() {
     return (
@@ -229,9 +237,9 @@ class App extends Component {
 
             <Switch>
 
-              <Route exact path='/' 
-                render={() => <FilterContainer userLocation={this.state.userLocation} allJobs={this.state.allJobs} viewJobPage={this.viewJobPage}/>}
-              />
+              {this.state.accepted ? <Route exact path='/' 
+                render={() => <FilterContainer userLocation={this.state.userLocation} allJobs={this.state.allJobs} viewJobPage={this.viewJobPage}/>} 
+              /> : <SplashPage /> }
               <Route
                 exact path='/login'
                 render={() => <Login loginSubmit={this.loginSubmit} loggedIn={this.state.loggedIn} loginFail={this.state.loginFail} />}
