@@ -141,9 +141,9 @@ class FilterContainer extends Component {
       const d = R * c; // Distance in km
 
       if(this.state.locationFilter === '') {
-        return <JobListing viewJobPage={this.props.viewJobPage} job={j} />
+        return <JobListing viewJobPage={this.props.viewJobPage} key={j.id} job={j} />
       } else if(d < parseInt(this.state.locationFilter)) {
-        return <JobListing viewJobPage={this.props.viewJobPage} job={j} />
+        return <JobListing viewJobPage={this.props.viewJobPage} key={j.id} job={j} />
       }
     })
 
@@ -168,11 +168,3 @@ class FilterContainer extends Component {
 
 
 export default FilterContainer;
-
-
-
-
-// this.payFilter();
-//       this.categoryFilter();
-//       this.locationFilter();
-//
