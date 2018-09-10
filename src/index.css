@@ -30,7 +30,7 @@ a {
 
 .filter-choice:hover::after {
   content: url('./times-circle-regular.svg') ;
-  height: 2vh;
+  height: 10px;
   margin: 2px;
   filter: invert(100%);
 
