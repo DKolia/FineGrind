@@ -23,8 +23,18 @@ a {
 .filter-choice {
   cursor: pointer;
   color: #CD5534;
+  padding: 2px;
   border: 1px solid white;
 }
+
+.filter-choice:hover::after {
+  content: url('../Images/times-circle-regular.svg');
+  height: 14vh;
+  margin-left: 3vw;
+  margin-top: 1vh;
+  filter: invert(100%);
+
+} 
 
 .splash {
   color: white;
