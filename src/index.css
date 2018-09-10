@@ -28,12 +28,8 @@ a {
   border: 1px solid white;
 }
 
-.filter-choice:hover::after {
-  content: url('./times-circle-regular.svg') ;
-  height: 10px;
-  margin: 2px;
-  filter: invert(100%);
-
+.filter-choice:hover {
+  color: red;
 } 
 
 .splash {
