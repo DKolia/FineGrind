@@ -29,10 +29,9 @@ a {
 }
 
 .filter-choice:hover::after {
-  content: url('./times-circle-regular.svg');
-  height: 14vh;
-  margin-left: 3vw;
-  margin-top: 1vh;
+  content: url('./times-circle-regular.svg') ;
+  height: 2vh;
+  margin: 2px;
   filter: invert(100%);
 
 } 
