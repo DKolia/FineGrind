@@ -21,6 +21,7 @@ a {
 }
 
 .filter-choice {
+  display: inline-block;
   cursor: pointer;
   color: #CD5534;
   padding: 2px;
@@ -28,7 +29,7 @@ a {
 }
 
 .filter-choice:hover::after {
-  content: url('../Images/times-circle-regular.svg');
+  content: url('./times-circle-regular.svg');
   height: 14vh;
   margin-left: 3vw;
   margin-top: 1vh;
