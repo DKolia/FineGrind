@@ -23,6 +23,7 @@ a {
 .filter-choice {
   cursor: pointer;
   color: #CD5534;
+  border: 1px solid white;
 }
 
 .splash {
