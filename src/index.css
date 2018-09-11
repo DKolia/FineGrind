@@ -32,6 +32,10 @@ a {
   color: red;
 } 
 
+.svg-x {
+  height: 5px;
+}
+
 .splash {
   color: white;
 }
